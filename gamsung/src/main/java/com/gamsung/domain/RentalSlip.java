@@ -39,10 +39,12 @@ public class RentalSlip {
     private String gamsung_pos; //감성포스 체크직원
     private String returner; // 반납확인
 
+    @Enumerated(EnumType.STRING)
     private RentalStatus rentalStatus;
 
-    public RentalSlip(String rentalNum, int deposit) {
+    public RentalSlip(String rentalNum, int deposit, RentalStatus rentalStatus) {
         this.rentalNum = rentalNum;
         this.deposit = deposit;
+        this.rentalStatus = rentalStatus;
     }
 }

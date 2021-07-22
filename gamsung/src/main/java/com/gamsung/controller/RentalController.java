@@ -3,6 +3,7 @@ package com.gamsung.controller;
 import com.gamsung.controller.scheduled.RentalNumSequence;
 import com.gamsung.domain.Customer;
 import com.gamsung.domain.RentalSlip;
+import com.gamsung.domain.RentalStatus;
 import com.gamsung.domain.Survey;
 import com.gamsung.domain.dto.SurveyDto;
 import com.gamsung.service.RentalService;
@@ -49,7 +50,7 @@ public class RentalController {
         rentalService.saveCustomer(customer1);
         rentalService.saveCustomer(customer2);
 
-        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit);
+        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit, RentalStatus.RECEIVED);
         RentalSlip saveRentalSlip = rentalService.saveRentalSlip(rentalSlip); // 재희) id추출해서 redirect할때 쓸꺼에용
 
         Survey survey = new Survey(surveyDto);

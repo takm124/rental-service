@@ -19,6 +19,8 @@ public class Customer {
     @JoinColumn(name = "rentalSlip_id")
     private RentalSlip rentalSlip;
 
+    public Customer(){}
+
     public Customer(String name, String phoneNum, String rentalNum) {
         this.name = name;
         this.phoneNum = phoneNum;

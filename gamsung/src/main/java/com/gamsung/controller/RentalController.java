@@ -4,6 +4,7 @@ import com.gamsung.controller.scheduled.RentalNumSequence;
 import com.gamsung.domain.Customer;
 import com.gamsung.domain.RentalSlip;
 import com.gamsung.domain.Survey;
+import com.gamsung.domain.dto.RentalSlipListDto;
 import com.gamsung.domain.dto.SurveyDto;
 import com.gamsung.service.RentalService;
 import lombok.RequiredArgsConstructor;
@@ -68,7 +69,10 @@ public class RentalController {
 
     @GetMapping("/rentalSlip")
     public String rentalSlipList(){
-
+        List<RentalSlipListDto> results = rentalService.rentalSlipList();
+        for (RentalSlipListDto result : results) {
+            System.out.println("result = " + result);
+        }
         return "rental/rentalSlipList";
     }
 

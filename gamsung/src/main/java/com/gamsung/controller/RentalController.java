@@ -32,28 +32,28 @@ public class RentalController {
 
     @GetMapping("/receive")
     public String receive(){
-//        model.addAttribute("survey", new SurveyDto());
         return "rental/receiveForm";
     }
 
     @PostMapping("/receive")
     public String customer(@RequestParam(value="name", required=true) List<String> names,
                            @RequestParam(value="phoneNum", required = true) List<String> phoneNums,
-                           @RequestParam int deposit){
+                           @RequestParam int deposit,
+                           SurveyDto surveyDto){
 
         // 렌탈번호 생성 및 DB에 같이 넣기
         String rentalNum = makeRentalNum();
 
         Customer customer1 = new Customer(names.get(0), phoneNums.get(0), rentalNum);
         Customer customer2 = new Customer(names.get(1), phoneNums.get(1), rentalNum);
-
         rentalService.saveCustomer(customer1);
         rentalService.saveCustomer(customer2);
-        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit);
-        rentalService.saveRentalSlip(rentalSlip);
 
-//        Survey survey = new Survey(surveyDto);
-//        rentalService.saveSurvey(survey);
+        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit);
+        RentalSlip saveRentalSlip = rentalService.saveRentalSlip(rentalSlip); // 재희) id추출해서 redirect할때 쓸꺼에용
+
+        Survey survey = new Survey(surveyDto);
+        rentalService.saveSurvey(survey);
 
 
         return "rental/receiveForm";

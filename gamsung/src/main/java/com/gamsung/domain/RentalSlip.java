@@ -1,10 +1,13 @@
 package com.gamsung.domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public class RentalSlip {
 
     @Id @GeneratedValue
@@ -15,7 +18,7 @@ public class RentalSlip {
 
     private int deposit;
 
-    private String receive; // 접수직원
+    private String receiver; // 접수직원
 
     @OneToMany(mappedBy = "rentalSlip")
     private List<Customer> customers = new ArrayList<>();

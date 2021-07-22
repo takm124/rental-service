@@ -1,7 +1,6 @@
 package com.gamsung.controller;
 
-import com.gamsung.domain.Place;
-import com.gamsung.domain.Staff;
+import com.gamsung.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +31,22 @@ public class InitSetting {
             Staff staffB = new Staff("staffB","test2","1111", Place.LWJS);
             em.persist(staffA);
             em.persist(staffB);
+
+            RentalSlip rentalSlip1 = new RentalSlip("20210721001", 30000, RentalStatus.RECEIVED);
+            RentalSlip rentalSlip2 = new RentalSlip("20210721002", 20000, RentalStatus.RECEIVED);
+            em.persist(rentalSlip1);
+            em.persist(rentalSlip2);
+
+            Customer customerA = new Customer("customerA", "01011111111", "20210721001", rentalSlip1);
+            Customer customerB = new Customer("customerB", "01011111111", "20210721001", rentalSlip1);
+            Customer customerC = new Customer("customerC", "01011111111", "20210721001", rentalSlip1);
+            Customer customerD = new Customer("customerD", "01022222222", "20210721002", rentalSlip2);
+            Customer customerE = new Customer("customerE", "01022222222", "20210721002", rentalSlip2);
+            em.persist(customerA);
+            em.persist(customerB);
+            em.persist(customerC);
+            em.persist(customerD);
+            em.persist(customerE);
         }
 
     }

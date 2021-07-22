@@ -66,6 +66,17 @@ public class RentalController {
         return now+seqFormat;
     }
 
+    @GetMapping("/rentalSlip")
+    public String rentalSlipList(){
+
+        return "rental/rentalSlipList";
+    }
+
+    @GetMapping("/reatalSlip/{rentalNum}")
+    public String rentalSlipForm(){
+        return "rental/rentalSlipForm";
+    }
+
 
 
 }

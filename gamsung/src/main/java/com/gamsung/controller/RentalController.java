@@ -45,13 +45,14 @@ public class RentalController {
         // 렌탈번호 생성 및 DB에 같이 넣기
         String rentalNum = makeRentalNum();
 
-        Customer customer1 = new Customer(names.get(0), phoneNums.get(0), rentalNum);
-        Customer customer2 = new Customer(names.get(1), phoneNums.get(1), rentalNum);
+        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit, RentalStatus.RECEIVED);
+        RentalSlip saveRentalSlip = rentalService.saveRentalSlip(rentalSlip); // 재희) id추출해서 redirect할때 쓸꺼에
+
+        Customer customer1 = new Customer(names.get(0), phoneNums.get(0), rentalNum, rentalSlip);
+        Customer customer2 = new Customer(names.get(1), phoneNums.get(1), rentalNum, rentalSlip);
         rentalService.saveCustomer(customer1);
         rentalService.saveCustomer(customer2);
 
-        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit, RentalStatus.RECEIVED);
-        RentalSlip saveRentalSlip = rentalService.saveRentalSlip(rentalSlip); // 재희) id추출해서 redirect할때 쓸꺼에용
 
         Survey survey = new Survey(surveyDto);
         rentalService.saveSurvey(survey);

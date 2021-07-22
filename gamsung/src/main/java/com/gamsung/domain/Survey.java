@@ -18,29 +18,29 @@ public class Survey {
     @OneToOne(mappedBy = "survey", fetch = FetchType.LAZY)
     private RentalSlip rentalSlip;
 
-    private int age_10;
-    private int age_20_25;
-    private int age_26_30;
-    private int age_31_35;
-    private int age_36_40;
-    private int age_40;
+    private Integer age_10;
+    private Integer age_20_25;
+    private Integer age_26_30;
+    private Integer age_31_35;
+    private Integer age_36_40;
+    private Integer age_40;
 
-    private int search;
-    private int friends;
-    private int blog;
-    private int youtube;
-    private int instagram;
-    private int facebook;
+    private Integer search;
+    private Integer friends;
+    private Integer blog;
+    private Integer youtube;
+    private Integer instagram;
+    private Integer facebook;
 
-    private int seoul;
-    private int incheon;
-    private int gyeonggi;
-    private int gangwon;
-    private int chungcheong;
-    private int jeolla;
-    private int gyeongsang;
-    private int jeju;
-    private int abroad;
+    private Integer seoul;
+    private Integer incheon;
+    private Integer gyeonggi;
+    private Integer gangwon;
+    private Integer chungcheong;
+    private Integer jeolla;
+    private Integer gyeongsang;
+    private Integer jeju;
+    private Integer abroad;
 
     public Survey(SurveyDto dto){
         this.age_10 = dto.getAge_10();

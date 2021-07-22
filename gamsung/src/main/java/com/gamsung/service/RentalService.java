@@ -17,16 +17,16 @@ public class RentalService {
     private final RentalRepository rentalRepository;
     private final SurveyRepository surveyRepository;
 
-    public void saveCustomer(Customer customer){
-        customerRepository.save(customer);
+    public Customer saveCustomer(Customer customer){
+        return customerRepository.save(customer);
     }
 
-    public void saveRentalSlip(RentalSlip rentalSlip) {
-        rentalRepository.save(rentalSlip);
+    public RentalSlip saveRentalSlip(RentalSlip rentalSlip) {
+        return rentalRepository.save(rentalSlip);
     }
 
-    public void saveSurvey(Survey survey) {
-        surveyRepository.save(survey);
+    public Survey saveSurvey(Survey survey) {
+        return surveyRepository.save(survey);
     }
 
 }

@@ -20,7 +20,6 @@ public class RentalService {
     private final CustomerRepository customerRepository;
     private final RentalRepository rentalRepository;
     private final SurveyRepository surveyRepository;
-    private RentalRepositoryImpl rentalRepositoryImpl;
 
     public Customer saveCustomer(Customer customer){
         return customerRepository.save(customer);
@@ -35,7 +34,7 @@ public class RentalService {
     }
 
     public List<RentalSlipListDto> rentalSlipList() {
-        return rentalRepositoryImpl.search();
+        return rentalRepository.search();
     }
 
 }

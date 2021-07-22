@@ -31,15 +31,14 @@ public class RentalRepositoryImpl implements RentalRepositoryCustom{
         return queryFactory
                 .select(new QRentalSlipListDto(
                         rentalSlip.rentalNum,
-                        ExpressionUtils.as(
+                        /*ExpressionUtils.as(
                                 select(customer.count())
                                         .from(customer)
                                         .where(customer.rentalNum.eq(rentalSlip.rentalNum)),
-                                "customerCount"),
+                                "customerCount"),*/
                         rentalSlip.deposit,
                         rentalSlip.receiver))
                 .from(rentalSlip)
-                .leftJoin(rentalSlip.customers, customer)
                 .where(rentalSlip.rentalStatus.eq(RentalStatus.RECEIVED))
                 .fetch();
     }

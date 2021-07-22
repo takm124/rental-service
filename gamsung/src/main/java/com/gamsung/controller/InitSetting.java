@@ -32,8 +32,8 @@ public class InitSetting {
             em.persist(staffA);
             em.persist(staffB);
 
-            RentalSlip rentalSlip1 = new RentalSlip("20210721001", 30000, RentalStatus.RECEIVED);
-            RentalSlip rentalSlip2 = new RentalSlip("20210721002", 20000, RentalStatus.RECEIVED);
+            RentalSlip rentalSlip1 = new RentalSlip("20210721001", 30000, "staffA", RentalStatus.RECEIVED);
+            RentalSlip rentalSlip2 = new RentalSlip("20210721002", 20000, "staffB",RentalStatus.RECEIVED);
             em.persist(rentalSlip1);
             em.persist(rentalSlip2);
 

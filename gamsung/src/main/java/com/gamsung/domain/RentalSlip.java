@@ -45,9 +45,10 @@ public class RentalSlip {
     @Enumerated(EnumType.STRING)
     private RentalStatus rentalStatus;
 
-    public RentalSlip(String rentalNum, int deposit, RentalStatus rentalStatus) {
+    public RentalSlip(String rentalNum, int deposit, String receiver, RentalStatus rentalStatus) {
         this.rentalNum = rentalNum;
         this.deposit = deposit;
+        this.receiver = receiver;
         this.rentalStatus = rentalStatus;
     }
 
@@ -57,7 +58,16 @@ public class RentalSlip {
         this.rentalStatus = clothDto.getRentalStatus();
     }
 
-    public void changeStatus(RentalStatus status){
+    public void changeStatus(RentalStatus status) {
         this.rentalStatus = status;
+    }
+
+    public RentalSlip(String rentalNum, int deposit, String receiver, RentalStatus rentalStatus, Survey survey) {
+        this.rentalNum = rentalNum;
+        this.deposit = deposit;
+        this.receiver = receiver;
+        this.rentalStatus = rentalStatus;
+        this.survey = survey;
+
     }
 }

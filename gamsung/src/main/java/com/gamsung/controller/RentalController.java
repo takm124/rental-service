@@ -1,5 +1,6 @@
 package com.gamsung.controller;
 
+import com.gamsung.SessionConst;
 import com.gamsung.controller.scheduled.RentalNumSequence;
 import com.gamsung.domain.*;
 import com.gamsung.domain.dto.ClothDto;
@@ -11,13 +12,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -39,12 +43,18 @@ public class RentalController {
     public String customer(@RequestParam(value="name", required=true) List<String> names,
                            @RequestParam(value="phoneNum", required = true) List<String> phoneNums,
                            @RequestParam int deposit,
-                           SurveyDto surveyDto){
+                           SurveyDto surveyDto,
+                           HttpServletRequest request){
+        // 현재 로그인되어있는 스탭
+        HttpSession session = request.getSession();
+        Staff loginStaff = (Staff) session.getAttribute(SessionConst.LOGIN_STAFF);
 
-        // 렌탈번호 생성 및 DB에 같이 넣기
-        String rentalNum = makeRentalNum();
+        // 설문
+        Survey survey = new Survey(surveyDto);
+        rentalService.saveSurvey(survey);
 
-        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit, RentalStatus.RECEIVED);
+        String rentalNum = makeRentalNum(); // 렌탈번호 생성 및 DB에 같이 넣기
+        RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit, loginStaff.getStaffName(), RentalStatus.RECEIVED, survey);
         RentalSlip saveRentalSlip = rentalService.saveRentalSlip(rentalSlip); // 재희) id추출해서 redirect할때 쓸꺼에
 
         Customer customer1 = new Customer(names.get(0), phoneNums.get(0), rentalNum, rentalSlip);
@@ -53,8 +63,7 @@ public class RentalController {
         rentalService.saveCustomer(customer2);
 
 
-        Survey survey = new Survey(surveyDto);
-        rentalService.saveSurvey(survey);
+
 
 
         return "rental/receiveForm";

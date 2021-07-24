@@ -13,11 +13,60 @@
 <body>
 
 <div class="container">
-
-    <form action="receive" th:action method="post">
-
-    </form>
-
+    <table border="1">
+        <tr>
+            <th colspan="2" th:text="${customers.get(0).getRentalNum()}"></th>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <th>전화번호</th>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.getCustomerName()}"></td>
+            <td th:text="${customer.getPhoneNum()}"></td>
+        </tr>
+    </table>
 </div> <!-- /container -->
+
+<form th:action="@{|/rentalSlip/${customers.get(0).getRentalNum()}|}" method="post">
+    <div class="col">
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_jacket()}"  class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_shirts()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_pants()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_vest()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_pullover()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_cardigan()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getMale_tie()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getMaleCloth()?.getBelt()}" class="form-control" disabled>
+    </div>
+    <div class="col">
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_jacket()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_shirts()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_pants()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_vest()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_pullover()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_cardigan()}" class="form-control" disabled>
+        <input type="text" th:value="${rentalSlip.getFemalCloth()?.getFemale_tie()}" class="form-control" disabled>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{/rentalSlip/{rentalNum}/edit(rentalNum=${rentalSlip.rentalNum})}'|" type="button">수정</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg" type="submit">결제완료</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='items.html'"
+                    th:onclick="|location.href='@{/basic/items}'|" type="button">취소</button>
+        </div>
+    </div>
+</form>
+<div class = "container">
+
+
+</div>
 </body>
 </html>

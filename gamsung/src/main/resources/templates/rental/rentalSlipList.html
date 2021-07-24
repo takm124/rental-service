@@ -11,13 +11,19 @@
     </style>
 </head>
 <body>
-
-<div class="container">
-
-    <form action="receive" th:action method="post">
-
-    </form>
-
-</div> <!-- /container -->
+<table border="1">
+    <tr>
+        <th>접수번호</th>
+        <th>인원</th>
+        <th>보증금</th>
+        <th>접수담당</th>
+    </tr>
+    <tr th:each="rentalSlip : ${rentalSlips}">
+        <td><a th:href="@{|/rentalSlip/${rentalSlip.rentalNum}|}" th:text="${rentalSlip.rentalNum}"></a></td>
+        <td th:text="${rentalSlip.customerCount}"></td>
+        <td th:text="${rentalSlip.deposit}"></td>
+        <td th:text = "${rentalSlip.receiver}"></td>
+    </tr>
+</table>
 </body>
 </html>

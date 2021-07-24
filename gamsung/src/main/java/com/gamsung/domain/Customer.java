@@ -1,5 +1,6 @@
 package com.gamsung.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

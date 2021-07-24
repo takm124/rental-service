@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>접수번호</th>
+        <th>인원</th>
+        <th>보증금</th>
+        <th>접수담당</th>
+        <th>결제담당</th>
+    </tr>
+    <tr th:each="returnSlip : ${returnSlips}">
+        <td><a th:href="@{|/returnSlip/${returnSlip.rentalNum}|}" th:text="${returnSlip.rentalNum}"></a></td>
+        <td th:text="${returnSlip.customerCount}"></td>
+        <td th:text="${returnSlip.deposit}"></td>
+        <td th:text = "${returnSlip.receiver}"></td>
+        <td th:text = "${returnSlip.payment}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Customer {
+public class Customer extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "customer_id")

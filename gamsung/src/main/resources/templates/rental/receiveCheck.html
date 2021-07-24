@@ -11,13 +11,18 @@
     </style>
 </head>
 <body>
-
 <div class="container">
 
-    <form action="receive" th:action method="post">
+    접수완료<br>
+    <h1><span th:text="${rentalNum}"></span></h1>
 
-    </form>
 
-</div> <!-- /container -->
+    <hr class="my-4">
+
+    <button class="w-100 btn btn-secondary btn-lg"
+        th:onclick="|location.href='@{/receive}'|"
+        type="button">새로운 접수 받기</button>
+
+</div>
+
 </body>
-</html>

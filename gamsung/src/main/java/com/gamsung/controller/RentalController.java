@@ -9,10 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,7 +39,8 @@ public class RentalController {
                            @RequestParam(value="phoneNum", required = true) List<String> phoneNums,
                            @RequestParam int deposit,
                            SurveyDto surveyDto,
-                           HttpServletRequest request){
+                           HttpServletRequest request,
+                           RedirectAttributes redirectAttributes){
         // 현재 로그인되어있는 스탭
         HttpSession session = request.getSession();
         Staff loginStaff = (Staff) session.getAttribute(SessionConst.LOGIN_STAFF);
@@ -52,18 +51,23 @@ public class RentalController {
 
         String rentalNum = makeRentalNum(); // 렌탈번호 생성 및 DB에 같이 넣기
         RentalSlip rentalSlip = new RentalSlip(rentalNum,deposit, loginStaff.getStaffName(), RentalStatus.RECEIVED, survey);
-        RentalSlip saveRentalSlip = rentalService.saveRentalSlip(rentalSlip); // 재희) id추출해서 redirect할때 쓸꺼에
+        rentalService.saveRentalSlip(rentalSlip);
 
-        Customer customer1 = new Customer(names.get(0), phoneNums.get(0), rentalNum, rentalSlip);
-        Customer customer2 = new Customer(names.get(1), phoneNums.get(1), rentalNum, rentalSlip);
-        rentalService.saveCustomer(customer1);
-        rentalService.saveCustomer(customer2);
+        for(int i = 0 ; i < names.size() ; i++){
+            if(names.get(i).length() != 0 && phoneNums.get(i).length() != 0){
+                rentalService.saveCustomer(new Customer(names.get(i), phoneNums.get(i), rentalNum, rentalSlip));
+            }
+        }
 
+        redirectAttributes.addAttribute("rentalNum", rentalNum);
 
+        return "redirect:/receiveCheck";
+    }
 
-
-
-        return "rental/receiveForm";
+    @GetMapping("/receiveCheck")
+    public String receiveCheck(String rentalNum, Model model){
+        model.addAttribute("rentalNum", rentalNum);
+        return "rental/receiveCheck";
     }
 
     public String makeRentalNum(){

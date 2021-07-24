@@ -28,7 +28,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginV3(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request) {
+    public String login(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "login/loginForm";
         }
@@ -43,11 +43,11 @@ public class LoginController {
         HttpSession session = request.getSession(); // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         session.setAttribute(SessionConst.LOGIN_STAFF, loginStaff);
 
-        return "redirect:/home";
+        return "redirect:/main";
     }
 
     @PostMapping("/logout")
-    public String logoutV3(HttpServletRequest request) {
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false); // 기존세션이 있을경우에 반환ㄴ, 없으면 null
         if (session != null) {
             session.invalidate();

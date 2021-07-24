@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-    @GetMapping("/home")
-    public String home(){
-        return "main/home";
+    @GetMapping("/") // 첫 화면
+    public String home() {
+        return "home";
     }
 
+    @GetMapping("/main")
+    public String main(){
+        return "common/main";
+    }
 }

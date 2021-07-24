@@ -24,10 +24,14 @@ public class Staff {
     @Enumerated(EnumType.STRING)
     private Place place;
 
-    public Staff(String staffName, String loginId, String password, Place place) {
+    @Enumerated(EnumType.STRING)
+    private JobPosition jobPosition;
+
+    public Staff(String staffName, String loginId, String password, Place place, JobPosition jobPosition) {
         this.staffName = staffName;
         this.loginId = loginId;
         this.password = password;
         this.place = place;
+        this.jobPosition = jobPosition;
     }
 }

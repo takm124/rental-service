@@ -2,16 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link th:href="@{/css/bootstrap.min.css}"
-          href="../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/static/css/bootstrap.min.css}"
+          href="../../static/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
             max-width: 560px;
         }
     </style>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        function add_customer() {
+            const new_customer = "<label for='name'>이름</label><input type='text' id='name' name='name' class='form-control'>" +
+                "<label for='name'>전화번호</label><input type='text' id='phoneNum' name='phoneNum' class='form-control'><br>";
+            document.getElementById("customer_form").innerHTML += new_customer;
+        }
+        /*]]>*/
+    </script>
 </head>
 <body>
-
 <div class="container">
 
     <div class="py-5 text-center">
@@ -25,10 +33,10 @@
         <label for="phoneNum">전화번호</label>
         <input type="text" id="phoneNum" name="phoneNum" class="form-control"><br>
 
-        <label for="name">이름</label>
-        <input type="text" id="name2" name="name" class="form-control">
-        <label for="phoneNum">전화번호</label>
-        <input type="text" id="phoneNum2" name="phoneNum" class="form-control"><br>
+        <div id="customer_form"></div>
+        <input type="button" value="고객 추가" style="cursor:hand;" th:onclick="'javascript:add_customer();'">
+
+        <hr class="my-4">
 
         <label for="name">보증금</label>
         <input type="text" id="deposit" name="deposit" class="form-control"><br>
@@ -73,8 +81,7 @@
             </div>
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
-                        onclick="location.href='items.html'"
-                        th:onclick="|location.href='@{/form/items}'|"
+                        th:onclick="|location.href='@{/main}'|"
                         type="button">취소</button>
             </div>
         </div>

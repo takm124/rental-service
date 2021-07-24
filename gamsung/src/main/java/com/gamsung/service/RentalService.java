@@ -1,8 +1,6 @@
 package com.gamsung.service;
 
-import com.gamsung.domain.Customer;
-import com.gamsung.domain.RentalSlip;
-import com.gamsung.domain.Survey;
+import com.gamsung.domain.*;
 import com.gamsung.domain.dto.RentalSlipListDto;
 import com.gamsung.repository.CustomerRepository;
 import com.gamsung.repository.RentalRepository;
@@ -29,12 +27,17 @@ public class RentalService {
         return rentalRepository.save(rentalSlip);
     }
 
+    public RentalSlip findRentalSlip(String rentalNum){ return rentalRepository.findByRentalNum(rentalNum);}
+
     public Survey saveSurvey(Survey survey) {
         return surveyRepository.save(survey);
     }
 
     public List<RentalSlipListDto> rentalSlipList() {
-        return rentalRepository.search();
+        return rentalRepository.searchRentalSlipList();
     }
+
+    public List<Customer> getCustomer(String rentalNum) {return customerRepository.findByRentalNum(rentalNum);}
+
 
 }

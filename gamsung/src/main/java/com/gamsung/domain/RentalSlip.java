@@ -1,5 +1,6 @@
 package com.gamsung.domain;
 
+import com.gamsung.domain.dto.ClothDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -48,5 +49,15 @@ public class RentalSlip {
         this.rentalNum = rentalNum;
         this.deposit = deposit;
         this.rentalStatus = rentalStatus;
+    }
+
+    public void setCloth(ClothDto clothDto){
+        this.maleCloth = clothDto.getMaleCloth();
+        this.femalCloth = clothDto.getFemaleCloth();
+        this.rentalStatus = clothDto.getRentalStatus();
+    }
+
+    public void changeStatus(RentalStatus status){
+        this.rentalStatus = status;
     }
 }

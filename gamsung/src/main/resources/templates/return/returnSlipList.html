@@ -17,12 +17,14 @@
         <th>인원</th>
         <th>보증금</th>
         <th>접수담당</th>
+        <th>결제담당</th>
     </tr>
-    <tr th:each="rentalSlip : ${rentalSlips}">
-        <td><a th:href="@{|/rentalSlip/${rentalSlip.rentalNum}|}" th:text="${rentalSlip.rentalNum}"></a></td>
-        <td th:text="${rentalSlip.customerCount}"></td>
-        <td th:text="${rentalSlip.deposit}"></td>
-        <td th:text = "${rentalSlip.receiver}"></td>
+    <tr th:each="returnSlip : ${returnSlips}">
+        <td><a th:href="@{|/returnSlip/${returnSlip.rentalNum}|}" th:text="${returnSlip.rentalNum}"></a></td>
+        <td th:text="${returnSlip.customerCount}"></td>
+        <td th:text="${returnSlip.deposit}"></td>
+        <td th:text = "${returnSlip.receiver}"></td>
+        <td th:text = "${returnSlip.payment}"></td>
     </tr>
 </table>
 </body>

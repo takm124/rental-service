@@ -4,9 +4,7 @@ import com.gamsung.domain.Customer;
 import com.gamsung.domain.QCustomer;
 import com.gamsung.domain.QRentalSlip;
 import com.gamsung.domain.RentalStatus;
-import com.gamsung.domain.dto.QRentalSlipListDto;
-import com.gamsung.domain.dto.RentalSearchCondition;
-import com.gamsung.domain.dto.RentalSlipListDto;
+import com.gamsung.domain.dto.*;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -27,19 +25,37 @@ public class RentalRepositoryImpl implements RentalRepositoryCustom{
     }
 
     @Override
-    public List<RentalSlipListDto> search() {
+    public List<RentalSlipListDto> searchRentalSlipList() {
         return queryFactory
                 .select(new QRentalSlipListDto(
                         rentalSlip.rentalNum,
-                        /*ExpressionUtils.as(
+                        ExpressionUtils.as(
                                 select(customer.count())
                                         .from(customer)
                                         .where(customer.rentalNum.eq(rentalSlip.rentalNum)),
-                                "customerCount"),*/
+                                "customerCount"),
                         rentalSlip.deposit,
                         rentalSlip.receiver))
                 .from(rentalSlip)
                 .where(rentalSlip.rentalStatus.eq(RentalStatus.RECEIVED))
+                .fetch();
+    }
+
+    @Override
+    public List<ReturnSlipListDto> searchReturnSlipList() {
+        return queryFactory
+                .select(new QReturnSlipListDto(
+                        rentalSlip.rentalNum,
+                        ExpressionUtils.as(
+                                select(customer.count())
+                                        .from(customer)
+                                        .where(customer.rentalNum.eq(rentalSlip.rentalNum)),
+                                "customerCount"),
+                        rentalSlip.deposit,
+                        rentalSlip.receiver,
+                        rentalSlip.payment))
+                .from(rentalSlip)
+                .where(rentalSlip.rentalStatus.eq(RentalStatus.PAYED))
                 .fetch();
     }
 }

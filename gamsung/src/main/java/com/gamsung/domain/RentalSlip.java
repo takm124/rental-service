@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Getter
-public class RentalSlip {
+public class RentalSlip extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "rentalSlip_id")

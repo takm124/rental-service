@@ -27,10 +27,12 @@ public class InitSetting {
 
         @Transactional
         public void init(){
-            Staff staffA = new Staff("staffA","test1","1111", Place.LWJS);
-            Staff staffB = new Staff("staffB","test2","1111", Place.LWJS);
+            Staff staffA = new Staff("staffA","test1","1111", Place.LWJS, JobPosition.STAFF);
+            Staff staffB = new Staff("staffB","test2","1111", Place.LWJS, JobPosition.STAFF);
+            Staff staffADMIN = new Staff("staffADMIN","admin","1111", Place.LWJS, JobPosition.ADMIN);
             em.persist(staffA);
             em.persist(staffB);
+            em.persist(staffADMIN);
 
             RentalSlip rentalSlip1 = new RentalSlip("20210721001", 30000, "staffA", RentalStatus.RECEIVED);
             RentalSlip rentalSlip2 = new RentalSlip("20210721002", 20000, "staffB",RentalStatus.RECEIVED);

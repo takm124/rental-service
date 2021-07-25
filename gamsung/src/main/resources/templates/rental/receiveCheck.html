@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/static/css/bootstrap.min.css}"
+          href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    접수완료<br>
+    <h1><span th:text="${rentalNum}"></span></h1>
+
+
+    <hr class="my-4">
+
+    <button class="w-100 btn btn-secondary btn-lg"
+        th:onclick="|location.href='@{/receive}'|"
+        type="button">새로운 접수 받기</button>
+
+</div>
+
+</body>

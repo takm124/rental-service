@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/static/css/bootstrap.min.css}"
+          href="../../static/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>감성교복 <span th:text="${place}"></span> </h2>
+
+    <a href="/adminStaffAccounts">Staff 계정 관리</a>
+    <a href="/adminRentalSlipList">전표 관리</a>
+    <a href="/main">관리자 페이지 종료</a>
+
+    <form th:action="@{/logout}" method="post">
+        <button class="w-100 btn btn-dark btn-lg"
+                type="submit"> 로그아웃
+        </button>
+    </form>
+
+</div>
+
+</body>

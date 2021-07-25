@@ -19,7 +19,7 @@ public class GamsungApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GamsungApplication.class, args);
 	}
-
+/*
 	@Bean
 	public AuditorAware<String> auditorProvider(){
 		return () -> {
@@ -32,5 +32,5 @@ public class GamsungApplication {
 
 			return Optional.of("Anonymous"); // 로그인 정보 없는경우 오류 처리 방안 구상하는 중
 		};
-	}
+	}*/
 }

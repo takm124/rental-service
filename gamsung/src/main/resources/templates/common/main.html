@@ -20,11 +20,16 @@
     <a href="/receiveList">접수내역</a>
     <a href="/rentalSlip">대여</a>
     <a href="/retalSlipList">대여내역</a>
+    <span th:text="${session.position}" > position </span>
+    <a href="/manage" th:if="${session.position.toString() eq 'ADMIN'}">관리자 페이지</a>
+
+
     <form th:action="@{/logout}" method="post">
         <button class="w-100 btn btn-dark btn-lg"
                 type="submit"> 로그아웃
         </button>
     </form>
+
 </div>
 
 </body>

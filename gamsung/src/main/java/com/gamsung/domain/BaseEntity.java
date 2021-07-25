@@ -23,6 +23,6 @@ public class BaseEntity {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    @LastModifiedBy
-    private String lastModifiedBy;
+//    @LastModifiedBy
+//    private String lastModifiedBy;
 }

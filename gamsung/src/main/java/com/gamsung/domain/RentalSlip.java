@@ -70,4 +70,6 @@ public class RentalSlip extends BaseEntity {
         this.survey = survey;
 
     }
+
+
 }

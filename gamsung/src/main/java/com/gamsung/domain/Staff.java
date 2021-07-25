@@ -21,6 +21,8 @@ public class Staff {
 
     private String password;
 
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     private Place place;
 
@@ -34,4 +36,5 @@ public class Staff {
         this.place = place;
         this.jobPosition = jobPosition;
     }
+
 }

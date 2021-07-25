@@ -31,7 +31,7 @@ public class RentalController {
 
     private final RentalService rentalService;
 
-    RentalNumSequence rentalNumSequence;
+    private final RentalNumSequence rentalNumSequence;
 
     private int rentalSequence;
 
@@ -67,11 +67,11 @@ public class RentalController {
 
         redirectAttributes.addAttribute("rentalNum", rentalNum);
 
-        return "redirect:/receiveCheck";
+        return "redirect:/receiveCheck/{rentalNum}";
     }
 
-    @GetMapping("/receiveCheck")
-    public String receiveCheck(String rentalNum, Model model){
+    @GetMapping("/receiveCheck/{rentalNum}")
+    public String receiveCheck(@PathVariable String rentalNum, Model model){
         model.addAttribute("rentalNum", rentalNum);
         return "rental/receiveCheck";
     }

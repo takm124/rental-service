@@ -1,6 +1,7 @@
 package com.gamsung.controller;
 
 import com.gamsung.SessionConst;
+import com.gamsung.domain.JobPosition;
 import com.gamsung.domain.Place;
 import com.gamsung.domain.Staff;
 import com.gamsung.domain.dto.NewStaffDto;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -71,8 +74,43 @@ public class AdminController {
     }
 
     @PostMapping("/newStaff")
-    public String makeNewStaff(@ModelAttribute NewStaffDto newStaffDto) {
+    public String makeNewStaff(@ModelAttribute NewStaffDto newStaffDto, HttpServletRequest request) {
+        Place place = getStaffPlace(request);
+        Staff staff = new Staff(
+                UUID.randomUUID().toString(),
+                newStaffDto.getStaffName(),
+                newStaffDto.getLoginId(),
+                newStaffDto.getPassword(),
+                newStaffDto.getPhoneNum(),
+                place, JobPosition.STAFF);
 
-        return "";
+        adminService.saveStaff(staff);
+
+        return "redirect:/adminStaffAccounts";
+    }
+
+    @GetMapping("/staffAccounts/edit/{staffNum}")
+    public String edit(@PathVariable String staffNum, Model model) {
+        Staff findStaff = adminService.findStaff(staffNum);
+        NewStaffDto staffDto = new NewStaffDto(findStaff.getStaffNum(), findStaff.getStaffName(), findStaff.getPhoneNumber(), findStaff.getLoginId(), findStaff.getPassword());
+        model.addAttribute("staffDto", staffDto);
+        return "admin/editStaffForm";
+    }
+
+    @PostMapping("/staffAccounts/edit/{staffNum}")
+    public String editStaff(@PathVariable String staffNum, @ModelAttribute NewStaffDto staffDto) {
+        log.info("newStaffDto = {}", staffDto);
+        Staff findStaff = adminService.findStaff(staffNum);
+
+        findStaff.editStaff(staffDto);
+        adminService.saveStaff(findStaff);
+        return "redirect:/adminStaffAccounts";
+    }
+
+    @GetMapping("/staffAccounts/delete/{staffNum}")
+    public String deleteStaff(@PathVariable String staffNum) {
+        Staff deleteStaff = adminService.findStaff(staffNum);
+        adminService.deleteStaff(deleteStaff);
+        return "redirect:/adminStaffAccounts";
     }
 }

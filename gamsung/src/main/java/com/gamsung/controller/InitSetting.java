@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -27,12 +28,14 @@ public class InitSetting {
 
         @Transactional
         public void init(){
-            Staff staffA = new Staff("staffA","test1","1111", Place.LWJS, JobPosition.STAFF);
-            Staff staffB = new Staff("staffB","test2","1111", Place.LWJS, JobPosition.STAFF);
-            Staff staffADMIN = new Staff("staffADMIN","admin","1111", Place.LWJS, JobPosition.ADMIN);
+            Staff staffA = new Staff(UUID.randomUUID().toString(),"staffA","test1","1111", "01012341234",Place.LWJS, JobPosition.STAFF);
+            Staff staffB = new Staff(UUID.randomUUID().toString(),"staffB","test2","1111", "01012341234",Place.LWJS, JobPosition.STAFF);
+            Staff staffADMIN = new Staff(UUID.randomUUID().toString(),"staffADMIN","admin","1111", "01012341234",Place.LWJS, JobPosition.ADMIN);
+            Staff staffADMIN2 = new Staff(UUID.randomUUID().toString(),"adminEVER","admin2","2222", "01012341234",Place.EVER, JobPosition.ADMIN);
             em.persist(staffA);
             em.persist(staffB);
             em.persist(staffADMIN);
+            em.persist(staffADMIN2);
 
             RentalSlip rentalSlip1 = new RentalSlip("20210721001", 30000, "staffA", RentalStatus.RECEIVED);
             RentalSlip rentalSlip2 = new RentalSlip("20210721002", 20000, "staffB",RentalStatus.RECEIVED);

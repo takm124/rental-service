@@ -27,7 +27,7 @@ public class StaffRepositoryImpl implements StaffRepositoryCustom{
     @Override
     public List<StaffDto> searchStaffList(Place place) {
         return queryFactory
-                .select(new QStaffDto(staff.staffName, staff.phoneNumber))
+                .select(new QStaffDto(staff.staffNum, staff.staffName, staff.phoneNumber))
                 .from(staff)
                 .where(staff.place.eq(place))
                 .fetch();

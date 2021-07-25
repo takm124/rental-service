@@ -6,11 +6,13 @@ import lombok.Data;
 @Data
 public class StaffDto {
 
+    private String staffNum;
     private String staffName;
     private String phoneNumber;
 
     @QueryProjection
-    public StaffDto(String staffName, String phoneNumber) {
+    public StaffDto(String staffNum, String staffName, String phoneNumber) {
+        this.staffNum = staffNum;
         this.staffName = staffName;
         this.phoneNumber = phoneNumber;
     }

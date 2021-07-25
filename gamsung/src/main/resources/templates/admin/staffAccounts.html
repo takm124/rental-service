@@ -19,10 +19,10 @@
         <th>휴대폰번호</th>
     </tr>
     <tr th:each="account : ${staffAccounts}">
-        <td><a th:href="@{|/staffAccounts/edit/${account.staffNum}|}" th:text="${account.staffName}"></a></td>
+        <td><a th:href="@{|/admin/staffAccounts/edit/${account.staffNum}|}" th:text="${account.staffName}"></a></td>
         <td th:text="${account.phoneNumber}"></td>
     </tr>
-    <a href="/newStaff">직원 생성하기</a>
+    <a href="/admin/newStaff">직원 생성하기</a>
 </table>
 </body>
 </html>

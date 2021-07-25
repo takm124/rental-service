@@ -40,7 +40,7 @@ public class AdminController {
         return places;
     }
 
-    @GetMapping("/manage")
+    @GetMapping("/admin")
     public String adminPage(Model model, HttpServletRequest request) {
         Place staffPlace = getStaffPlace(request);
 
@@ -58,7 +58,7 @@ public class AdminController {
         return place;
     }
 
-    @GetMapping("/adminStaffAccounts")
+    @GetMapping("/admin/staffAccounts")
     public String staffAccounts(Model model, HttpServletRequest request) {
         Place place = getStaffPlace(request);
         List<StaffDto> staffAccounts = adminService.searchStaffList(place);
@@ -68,12 +68,12 @@ public class AdminController {
         return "admin/staffAccounts";
     }
 
-    @GetMapping("/newStaff")
+    @GetMapping("/admin/newStaff")
     public String newStaff(@ModelAttribute("newStaffDto") NewStaffDto newStaffDto) {
         return "admin/newStaffForm";
     }
 
-    @PostMapping("/newStaff")
+    @PostMapping("/admin/newStaff")
     public String makeNewStaff(@ModelAttribute NewStaffDto newStaffDto, HttpServletRequest request) {
         Place place = getStaffPlace(request);
         Staff staff = new Staff(
@@ -86,10 +86,10 @@ public class AdminController {
 
         adminService.saveStaff(staff);
 
-        return "redirect:/adminStaffAccounts";
+        return "redirect:/admin/staffAccounts";
     }
 
-    @GetMapping("/staffAccounts/edit/{staffNum}")
+    @GetMapping("/admin/staffAccounts/edit/{staffNum}")
     public String edit(@PathVariable String staffNum, Model model) {
         Staff findStaff = adminService.findStaff(staffNum);
         NewStaffDto staffDto = new NewStaffDto(findStaff.getStaffNum(), findStaff.getStaffName(), findStaff.getPhoneNumber(), findStaff.getLoginId(), findStaff.getPassword());
@@ -97,20 +97,20 @@ public class AdminController {
         return "admin/editStaffForm";
     }
 
-    @PostMapping("/staffAccounts/edit/{staffNum}")
+    @PostMapping("/admin/staffAccounts/edit/{staffNum}")
     public String editStaff(@PathVariable String staffNum, @ModelAttribute NewStaffDto staffDto) {
         log.info("newStaffDto = {}", staffDto);
         Staff findStaff = adminService.findStaff(staffNum);
 
         findStaff.editStaff(staffDto);
         adminService.saveStaff(findStaff);
-        return "redirect:/adminStaffAccounts";
+        return "redirect:/admin/staffAccounts";
     }
 
-    @GetMapping("/staffAccounts/delete/{staffNum}")
+    @GetMapping("/admin/staffAccounts/delete/{staffNum}")
     public String deleteStaff(@PathVariable String staffNum) {
         Staff deleteStaff = adminService.findStaff(staffNum);
         adminService.deleteStaff(deleteStaff);
-        return "redirect:/adminStaffAccounts";
+        return "redirect:/admin/staffAccounts";
     }
 }

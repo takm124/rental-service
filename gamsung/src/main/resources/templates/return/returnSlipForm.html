@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table border="1">
+        <tr>
+            <th colspan="2" th:text="${customers.get(0).getRentalNum()}"></th>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <th>전화번호</th>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.getCustomerName()}"></td>
+            <td th:text="${customer.getPhoneNum()}"></td>
+        </tr>
+    </table>
+</div> <!-- /container -->
+
+<form th:action method="post">
+    <div class="col">
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_jacket()}"  class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_shirts()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_pants()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_vest()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_pullover()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_cardigan()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getMale_tie()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getMaleCloth()?.getBelt()}" class="form-control" disabled>
+    </div>
+    <div class="col">
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_jacket()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_shirts()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_pants()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_vest()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_pullover()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_cardigan()}" class="form-control" disabled>
+        <input type="text" th:value="${returnSlip.getFemalCloth()?.getFemale_tie()}" class="form-control" disabled>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{/returnSlip/{rentalNum}/edit(rentalNum=${returnSlip.rentalNum})}'|" type="button">수정</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg" type="submit">반납완료</button>
+        </div>
+
+    </div>
+</form>
+<div class = "container">
+
+
+</div>
+</body>
+</html>

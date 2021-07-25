@@ -98,7 +98,6 @@ public class RentalController {
     @PostMapping("/rentalSlip/{rentalNum}")
     public String payment(@PathVariable("rentalNum") String rentalNum){
 
-
         RentalStatus rentalStatus = RentalStatus.PAYED;
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
         rentalSlip.changeStatus(rentalStatus);
@@ -135,6 +134,7 @@ public class RentalController {
 
         return "redirect:/rentalSlip/{rentalNum}";
     }
+
 
 
 

@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@Getter
 public class Customer extends BaseEntity {
 
     @Id @GeneratedValue

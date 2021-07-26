@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>접수</h2>
+    </div>
+    <table border="1">
+        <tr>
+            <th>접수번호</th>
+            <th>접수 직원</th>
+            <th>대여 및 결제직원</th>
+            <th>포스체크 직원</th>
+            <th>반납 직원</th>
+            <th>날짜?ㅎ뭐라고쓰지ㅎ</th>
+        </tr>
+
+        <tr th:each="rentalSlip : ${rentalSlips}">
+            <td><a th:href="@{|/admin/rentalSlipDetail/${rentalSlip.rentalNum}|}" th:text="${rentalSlip.rentalNum}"></a></td>
+            <td th:text="${rentalSlip.receiver}"></td>
+            <td th:text="${rentalSlip.payment}"></td>
+            <td th:text="${rentalSlip.gamsung_pos}"></td>
+            <td th:text = "${rentalSlip.returner}"></td>
+            <td th:text = "${#temporals.format(rentalSlip.enterDate, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.gamsung.controller;
 import com.gamsung.domain.Customer;
 import com.gamsung.domain.RentalSlip;
 import com.gamsung.domain.RentalStatus;
+import com.gamsung.domain.dto.CustomerDto;
 import com.gamsung.domain.dto.RentalSlipListDto;
 import com.gamsung.domain.dto.ReturnSlipListDto;
 import com.gamsung.service.RentalService;
@@ -37,7 +38,7 @@ public class ReturnController {
     @GetMapping("/returnSlip/{rentalNum}")
     public String rentalSlipForm(@PathVariable("rentalNum") String rentalNum, Model model){
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        List<Customer> customers = rentalService.getCustomer(rentalNum);
+        List<CustomerDto> customers = rentalService.getCustomer(rentalNum);
 
         model.addAttribute("customers", customers);
         model.addAttribute("returnSlip", rentalSlip);

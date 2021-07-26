@@ -3,10 +3,7 @@ package com.gamsung.controller;
 import com.gamsung.SessionConst;
 import com.gamsung.controller.scheduled.RentalNumSequence;
 import com.gamsung.domain.*;
-import com.gamsung.domain.dto.ClothDto;
-import com.gamsung.domain.dto.RentalClothDto;
-import com.gamsung.domain.dto.RentalSlipListDto;
-import com.gamsung.domain.dto.SurveyDto;
+import com.gamsung.domain.dto.*;
 import com.gamsung.service.RentalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -94,7 +91,7 @@ public class RentalController {
     @GetMapping("/rentalSlip/{rentalNum}")
     public String rentalSlipForm(@PathVariable("rentalNum") String rentalNum, Model model){
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        List<Customer> customers = rentalService.getCustomer(rentalNum);
+        List<CustomerDto> customers = rentalService.getCustomer(rentalNum);
 
         model.addAttribute("customers", customers);
         model.addAttribute("rentalSlip", rentalSlip);
@@ -116,7 +113,7 @@ public class RentalController {
     @GetMapping("/rentalSlip/{rentalNum}/edit")
     public String rentalSlipEditForm(@PathVariable("rentalNum") String rentalNum, Model model){
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        List<Customer> customers = rentalService.getCustomer(rentalNum);
+        List<CustomerDto> customers = rentalService.getCustomer(rentalNum);
 
         model.addAttribute("customers", customers);
         model.addAttribute("rentalSlip", rentalSlip);

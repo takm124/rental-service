@@ -1,5 +1,6 @@
 package com.gamsung.repository;
 
+import com.gamsung.domain.dto.AdminRentalSlipListDto;
 import com.gamsung.domain.dto.RentalSearchCondition;
 import com.gamsung.domain.dto.RentalSlipListDto;
 import com.gamsung.domain.dto.ReturnSlipListDto;
@@ -12,4 +13,8 @@ public interface RentalRepositoryCustom {
 
     List<RentalSlipListDto> searchRentalSlipList();
     List<ReturnSlipListDto> searchReturnSlipList();
+
+    List<AdminRentalSlipListDto> adminRentalSlipList();
+
+    AdminRentalSlipListDto adminRentalSlipDetail(String rentalNum);
 }

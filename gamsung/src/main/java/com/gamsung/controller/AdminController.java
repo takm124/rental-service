@@ -1,20 +1,21 @@
 package com.gamsung.controller;
 
 import com.gamsung.SessionConst;
+import com.gamsung.domain.Customer;
 import com.gamsung.domain.JobPosition;
 import com.gamsung.domain.Place;
 import com.gamsung.domain.Staff;
+import com.gamsung.domain.dto.AdminRentalSlipListDto;
+import com.gamsung.domain.dto.CustomerDto;
 import com.gamsung.domain.dto.NewStaffDto;
 import com.gamsung.domain.dto.StaffDto;
 import com.gamsung.service.AdminService;
+import com.gamsung.service.RentalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,9 +27,11 @@ import java.util.UUID;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class AdminController {
 
     private final AdminService adminService;
+    private final RentalService rentalService;
 
     public Map<String, String> places() {
         Map<String, String> places = new HashMap<>();
@@ -40,7 +43,7 @@ public class AdminController {
         return places;
     }
 
-    @GetMapping("/admin")
+    @GetMapping
     public String adminPage(Model model, HttpServletRequest request) {
         Place staffPlace = getStaffPlace(request);
 
@@ -58,7 +61,7 @@ public class AdminController {
         return place;
     }
 
-    @GetMapping("/admin/staffAccounts")
+    @GetMapping("/staffAccounts")
     public String staffAccounts(Model model, HttpServletRequest request) {
         Place place = getStaffPlace(request);
         List<StaffDto> staffAccounts = adminService.searchStaffList(place);
@@ -68,12 +71,12 @@ public class AdminController {
         return "admin/staffAccounts";
     }
 
-    @GetMapping("/admin/newStaff")
+    @GetMapping("/staffAccounts/new")
     public String newStaff(@ModelAttribute("newStaffDto") NewStaffDto newStaffDto) {
         return "admin/newStaffForm";
     }
 
-    @PostMapping("/admin/newStaff")
+    @PostMapping("/staffAccounts/new")
     public String makeNewStaff(@ModelAttribute NewStaffDto newStaffDto, HttpServletRequest request) {
         Place place = getStaffPlace(request);
         Staff staff = new Staff(
@@ -89,7 +92,7 @@ public class AdminController {
         return "redirect:/admin/staffAccounts";
     }
 
-    @GetMapping("/admin/staffAccounts/edit/{staffNum}")
+    @GetMapping("/staffAccounts/edit/{staffNum}")
     public String edit(@PathVariable String staffNum, Model model) {
         Staff findStaff = adminService.findStaff(staffNum);
         NewStaffDto staffDto = new NewStaffDto(findStaff.getStaffNum(), findStaff.getStaffName(), findStaff.getPhoneNumber(), findStaff.getLoginId(), findStaff.getPassword());
@@ -97,7 +100,7 @@ public class AdminController {
         return "admin/editStaffForm";
     }
 
-    @PostMapping("/admin/staffAccounts/edit/{staffNum}")
+    @PostMapping("/staffAccounts/edit/{staffNum}")
     public String editStaff(@PathVariable String staffNum, @ModelAttribute NewStaffDto staffDto) {
         log.info("newStaffDto = {}", staffDto);
         Staff findStaff = adminService.findStaff(staffNum);
@@ -107,10 +110,30 @@ public class AdminController {
         return "redirect:/admin/staffAccounts";
     }
 
-    @GetMapping("/admin/staffAccounts/delete/{staffNum}")
+    @GetMapping("/staffAccounts/delete/{staffNum}")
     public String deleteStaff(@PathVariable String staffNum) {
         Staff deleteStaff = adminService.findStaff(staffNum);
         adminService.deleteStaff(deleteStaff);
         return "redirect:/admin/staffAccounts";
+    }
+
+
+    @GetMapping("/rentalSlipList")
+    public String rentalSlipList(Model model) {
+        List<AdminRentalSlipListDto> rentalSlips = adminService.rentalSlipList();
+        model.addAttribute("rentalSlips", rentalSlips);
+        return "admin/rentalSlipList";
+    }
+
+    @GetMapping("/rentalSlipDetail/{rentalNum}")
+    public String rentalSlipDetail(@PathVariable String rentalNum, Model model) {
+        AdminRentalSlipListDto rentalSlipDetail = adminService.rentalSlipDetail(rentalNum);
+        List<CustomerDto> customers = rentalService.getCustomer(rentalNum);
+
+
+
+        model.addAttribute("rentalSlipDetail", rentalSlipDetail);
+        model.addAttribute("customers", customers);
+        return "admin/rentalSlipDetail";
     }
 }

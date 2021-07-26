@@ -1,6 +1,7 @@
 package com.gamsung.service;
 
 import com.gamsung.domain.*;
+import com.gamsung.domain.dto.CustomerDto;
 import com.gamsung.domain.dto.RentalSlipListDto;
 import com.gamsung.repository.CustomerRepository;
 import com.gamsung.repository.RentalRepository;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +41,16 @@ public class RentalService {
         return rentalRepository.searchRentalSlipList();
     }
 
-    public List<Customer> getCustomer(String rentalNum) {return customerRepository.findByRentalNum(rentalNum);}
+    public List<CustomerDto> getCustomer(String rentalNum) {
+        List<Customer> customers = customerRepository.findByRentalNum(rentalNum);
+        List<CustomerDto> customerDtos = new ArrayList<>();
+        for (Customer customer : customers) {
+            customerDtos.add(new CustomerDto(customer.getCustomerName(), customer.getPhoneNum(), customer.getRentalNum()));
+        }
+        return customerDtos;
+    }
+
+
 
     @Transactional
     public void updatePayment(Long id, RentalStatus rentalStatus, String staffName){

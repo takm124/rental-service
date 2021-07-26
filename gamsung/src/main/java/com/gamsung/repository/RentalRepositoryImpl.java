@@ -58,4 +58,36 @@ public class RentalRepositoryImpl implements RentalRepositoryCustom{
                 .where(rentalSlip.rentalStatus.eq(RentalStatus.PAYED))
                 .fetch();
     }
+
+    @Override
+    public List<AdminRentalSlipListDto> adminRentalSlipList() {
+        return queryFactory
+                .select(new QAdminRentalSlipListDto(
+                        rentalSlip.rentalNum,
+                        rentalSlip.receiver,
+                        rentalSlip.payment,
+                        rentalSlip.gamsung_pos,
+                        rentalSlip.returner,
+                        rentalSlip.createdDate
+                ))
+                .from(rentalSlip)
+                .fetch();
+    }
+
+
+    @Override
+    public AdminRentalSlipListDto adminRentalSlipDetail(String rentalNum) {
+        return queryFactory
+                .select(new QAdminRentalSlipListDto(
+                        rentalSlip.rentalNum,
+                        rentalSlip.receiver,
+                        rentalSlip.payment,
+                        rentalSlip.gamsung_pos,
+                        rentalSlip.returner,
+                        rentalSlip.createdDate
+                ))
+                .from(rentalSlip)
+                .where(rentalSlip.rentalNum.eq(rentalNum))
+                .fetchOne();
+    }
 }

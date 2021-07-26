@@ -63,7 +63,7 @@ public class RentalService {
     public void updateReturned(Long id, RentalStatus rentalStatus, String staffName){
         Optional<RentalSlip> rentalSlip = rentalRepository.findById(id);
         rentalSlip.get().changeStatus(rentalStatus);
-        rentalSlip.get().addPaymentStaff(staffName);
+        rentalSlip.get().addReturnStaff(staffName);
     }
 
 

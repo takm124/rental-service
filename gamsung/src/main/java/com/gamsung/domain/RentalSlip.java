@@ -78,6 +78,6 @@ public class RentalSlip extends BaseEntity {
     }
 
     public void addReturnStaff(String staffName) {
-        this.payment = staffName;
+        this.returner = staffName;
     }
 }

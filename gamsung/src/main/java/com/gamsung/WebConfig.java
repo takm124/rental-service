@@ -1,5 +1,6 @@
 package com.gamsung;
 
+import com.gamsung.interceptor.AdminCheckInterceptor;
 import com.gamsung.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,6 +14,11 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/", "/login", "/logout", "/static/css/**", "/*.ico", "/error");
+                .excludePathPatterns("/", "/login", "/logout", "/css/**", "/*.ico", "/error");
+
+        registry.addInterceptor(new AdminCheckInterceptor())
+                .order(2)
+                .addPathPatterns("/admin/**");
+
     }
 }

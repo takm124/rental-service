@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/static/css/bootstrap.min.css}"
+          href="../../static/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <h2>Staff 계정</h2>
+    <hr class="my-4">
+    <tr>
+        <th>직원이름</th>
+        <th>휴대폰번호</th>
+    </tr>
+    <tr th:each="account : ${staffAccounts}">
+        <td><a th:href="@{|/admin/staffAccounts/edit/${account.staffNum}|}" th:text="${account.staffName}"></a></td>
+        <td th:text="${account.phoneNumber}"></td>
+    </tr>
+    <a href="/admin/newStaff">직원 생성하기</a>
+</table>
+</body>
+</html>

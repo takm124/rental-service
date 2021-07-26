@@ -16,6 +16,6 @@ public class RentalNumSequence {
 
     @Scheduled(cron = "0 0 0 * * *") // 매일자정 초기화
     public void initRentalSequence(){
-        rentalNumSequence = 0;
+        rentalNumSequence = 1;
     }
 }

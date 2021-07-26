@@ -42,7 +42,8 @@ public class LoginController {
         // 로그인 성공 처리
         HttpSession session = request.getSession(); // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         session.setAttribute(SessionConst.LOGIN_STAFF, loginStaff);
-
+        log.info("position = {}", loginStaff.getJobPosition());
+        session.setAttribute("position", loginStaff.getJobPosition());
         return "redirect:/main";
     }
 

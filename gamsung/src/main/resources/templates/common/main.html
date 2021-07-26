@@ -16,11 +16,12 @@
 </head>
 <body>
 <div class="container">
-    <a href="/receive">접수</a>
-    <a href="/rentalSlip">대여</a>
-    <a href="/returnSlip">반납</a>
-    <a href="/admin" th:if="${session.position.toString() eq 'ADMIN'}">관리자 페이지</a>
-
+    <div class="py-5 text-center">
+        <a href="/receive">접수</a>
+        <a href="/rentalSlip">대여</a>
+        <a href="/returnSlip">반납</a>
+        <a href="/admin" th:if="${session.position.toString() eq 'ADMIN'}">관리자 페이지</a>
+    </div>
 
     <form th:action="@{/logout}" method="post">
         <button class="w-100 btn btn-dark btn-lg"

@@ -1,10 +1,7 @@
 package com.gamsung.controller;
 
 import com.gamsung.SessionConst;
-import com.gamsung.domain.Customer;
-import com.gamsung.domain.JobPosition;
-import com.gamsung.domain.Place;
-import com.gamsung.domain.Staff;
+import com.gamsung.domain.*;
 import com.gamsung.domain.dto.AdminRentalSlipListDto;
 import com.gamsung.domain.dto.CustomerDto;
 import com.gamsung.domain.dto.NewStaffDto;
@@ -129,11 +126,12 @@ public class AdminController {
     public String rentalSlipDetail(@PathVariable String rentalNum, Model model) {
         AdminRentalSlipListDto rentalSlipDetail = adminService.rentalSlipDetail(rentalNum);
         List<CustomerDto> customers = rentalService.getCustomer(rentalNum);
-
+        RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
 
 
         model.addAttribute("rentalSlipDetail", rentalSlipDetail);
         model.addAttribute("customers", customers);
+        model.addAttribute("rentalSlip", rentalSlip);
         return "admin/rentalSlipDetail";
     }
 }

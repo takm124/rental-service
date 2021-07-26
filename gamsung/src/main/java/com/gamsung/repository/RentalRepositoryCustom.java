@@ -15,6 +15,5 @@ public interface RentalRepositoryCustom {
     List<ReturnSlipListDto> searchReturnSlipList();
 
     List<AdminRentalSlipListDto> adminRentalSlipList();
-
     AdminRentalSlipListDto adminRentalSlipDetail(String rentalNum);
 }

@@ -14,9 +14,15 @@
     <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
         function add_customer() {
-            const new_customer = "<label for='name'>이름</label><input type='text' id='name' name='name' class='form-control'>" +
-                "<label for='name'>전화번호</label><input type='text' id='phoneNum' name='phoneNum' class='form-control'><br>";
-            document.getElementById("customer_form").innerHTML += new_customer;
+            const new_customer =
+                "<label for='name'>이름</label><input type='text' onchange='maintain_value(this)' id='name' name='name' class='form-control'>" +
+                "<label for='name'>전화번호</label><input type='text' onchange='maintain_value(this)' id='phoneNum' name='phoneNum' class='form-control'><br>";
+
+            document.getElementById('customer_form').innerHTML += new_customer;
+        }
+
+        const maintain_value = function(e) {
+            e.setAttribute('value', e.value);
         }
         /*]]>*/
     </script>

@@ -102,9 +102,8 @@ public class RentalController {
     @PostMapping("/rentalSlip/{rentalNum}")
     public String payment(@PathVariable("rentalNum") String rentalNum){
 
-        RentalStatus rentalStatus = RentalStatus.PAYED;
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        rentalSlip.changeStatus(rentalStatus);
+        rentalService.updateStatus(rentalSlip.getId(), RentalStatus.PAYED);
 
         return "redirect:/rentalSlip";
     }

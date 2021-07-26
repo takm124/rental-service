@@ -50,9 +50,8 @@ public class ReturnController {
     @PostMapping("/returnSlip/{rentalNum}")
     public String returned(@PathVariable("rentalNum") String rentalNum){
 
-        RentalStatus rentalStatus = RentalStatus.RETURNED;
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        rentalSlip.changeStatus(rentalStatus);
+        rentalService.updateStatus(rentalSlip.getId(), RentalStatus.RETURNED);
 
         return "redirect:/returnSlip";
     }

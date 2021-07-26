@@ -3,6 +3,7 @@ package com.gamsung.domain;
 import com.gamsung.domain.dto.ClothDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Getter
+@DynamicUpdate
 public class RentalSlip extends BaseEntity {
 
     @Id @GeneratedValue

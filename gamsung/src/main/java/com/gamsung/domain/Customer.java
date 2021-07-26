@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor @Getter
 public class Customer extends BaseEntity {
 
     @Id @GeneratedValue

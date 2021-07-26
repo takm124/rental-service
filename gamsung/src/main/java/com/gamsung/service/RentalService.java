@@ -8,8 +8,10 @@ import com.gamsung.repository.RentalRepositoryImpl;
 import com.gamsung.repository.SurveyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +40,14 @@ public class RentalService {
     }
 
     public List<Customer> getCustomer(String rentalNum) {return customerRepository.findByRentalNum(rentalNum);}
+
+    @Transactional
+    public void updateStatus(Long id, RentalStatus rentalStatus){
+        Optional<RentalSlip> rentalSlip = rentalRepository.findById(id);
+        rentalSlip.get().changeStatus(rentalStatus);
+
+    }
+
 
 
 }

@@ -20,7 +20,7 @@ public class GamsungApplication {
 		SpringApplication.run(GamsungApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public AuditorAware<String> auditorProvider(){
 		return () -> {
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -32,5 +32,5 @@ public class GamsungApplication {
 
 			return Optional.of("Anonymous"); // 로그인 정보 없는경우 오류 처리 방안 구상하는 중
 		};
-	}
+	}*/
 }

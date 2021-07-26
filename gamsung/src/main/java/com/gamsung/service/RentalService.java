@@ -42,10 +42,17 @@ public class RentalService {
     public List<Customer> getCustomer(String rentalNum) {return customerRepository.findByRentalNum(rentalNum);}
 
     @Transactional
-    public void updateStatus(Long id, RentalStatus rentalStatus){
+    public void updatePayment(Long id, RentalStatus rentalStatus, String staffName){
         Optional<RentalSlip> rentalSlip = rentalRepository.findById(id);
         rentalSlip.get().changeStatus(rentalStatus);
+        rentalSlip.get().addPaymentStaff(staffName);
+    }
 
+    @Transactional
+    public void updateReturned(Long id, RentalStatus rentalStatus, String staffName){
+        Optional<RentalSlip> rentalSlip = rentalRepository.findById(id);
+        rentalSlip.get().changeStatus(rentalStatus);
+        rentalSlip.get().addPaymentStaff(staffName);
     }
 
 

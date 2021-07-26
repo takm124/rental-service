@@ -1,8 +1,10 @@
 package com.gamsung.controller;
 
+import com.gamsung.SessionConst;
 import com.gamsung.domain.Customer;
 import com.gamsung.domain.RentalSlip;
 import com.gamsung.domain.RentalStatus;
+import com.gamsung.domain.Staff;
 import com.gamsung.domain.dto.RentalSlipListDto;
 import com.gamsung.domain.dto.ReturnSlipListDto;
 import com.gamsung.service.RentalService;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -47,10 +51,14 @@ public class ReturnController {
 
     //반납 완료
     @PostMapping("/returnSlip/{rentalNum}")
-    public String returned(@PathVariable("rentalNum") String rentalNum){
+    public String returned(@PathVariable("rentalNum") String rentalNum, HttpServletRequest request){
+
+        // 현재 로그인되어있는 스탭
+        HttpSession session = request.getSession();
+        Staff loginStaff = (Staff) session.getAttribute(SessionConst.LOGIN_STAFF);
 
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        rentalService.updateStatus(rentalSlip.getId(), RentalStatus.RETURNED);
+        rentalService.updateReturned(rentalSlip.getId(), RentalStatus.RETURNED, loginStaff.getStaffName());
 
         return "redirect:/returnSlip";
     }

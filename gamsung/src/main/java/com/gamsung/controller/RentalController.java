@@ -103,10 +103,13 @@ public class RentalController {
 
     //결제완료
     @PostMapping("/rentalSlip/{rentalNum}")
-    public String payment(@PathVariable("rentalNum") String rentalNum){
+    public String payment(@PathVariable("rentalNum") String rentalNum, HttpServletRequest request){
+        // 현재 로그인되어있는 스탭
+        HttpSession session = request.getSession();
+        Staff loginStaff = (Staff) session.getAttribute(SessionConst.LOGIN_STAFF);
 
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        rentalService.updateStatus(rentalSlip.getId(), RentalStatus.PAYED);
+        rentalService.updatePayment(rentalSlip.getId(), RentalStatus.PAYED, loginStaff.getStaffName());
 
         return "redirect:/rentalSlip";
     }

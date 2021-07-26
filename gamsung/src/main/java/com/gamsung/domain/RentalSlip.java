@@ -73,5 +73,11 @@ public class RentalSlip extends BaseEntity {
 
     }
 
+    public void addPaymentStaff(String staffName) {
+        this.payment = staffName;
+    }
 
+    public void addReturnStaff(String staffName) {
+        this.payment = staffName;
+    }
 }

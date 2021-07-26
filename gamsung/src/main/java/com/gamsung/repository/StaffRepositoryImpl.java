@@ -1,18 +1,14 @@
 package com.gamsung.repository;
 
 import com.gamsung.domain.Place;
-import com.gamsung.domain.QStaff;
 import com.gamsung.domain.dto.QStaffDto;
 import com.gamsung.domain.dto.StaffDto;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.gamsung.domain.QStaff.*;
-import static org.thymeleaf.util.StringUtils.isEmpty;
+import static com.gamsung.domain.QStaff.staff;
 
 
 public class StaffRepositoryImpl implements StaffRepositoryCustom{

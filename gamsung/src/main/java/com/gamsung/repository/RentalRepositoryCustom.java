@@ -12,7 +12,9 @@ import java.util.List;
 public interface RentalRepositoryCustom {
 
     List<RentalSlipListDto> searchRentalSlipList();
+    List<RentalSlipListDto> keywordRentalSlipList(String customerName);
     List<ReturnSlipListDto> searchReturnSlipList();
+
 
     List<AdminRentalSlipListDto> adminRentalSlipList();
     AdminRentalSlipListDto adminRentalSlipDetail(String rentalNum);

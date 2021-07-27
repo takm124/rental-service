@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -123,9 +126,10 @@ public class RentalController {
 
     //수정완료
     @PostMapping("/rentalSlip/{rentalNum}/edit")
-    public String rentalSlipEdit(@PathVariable("rentalNum") String rentalNum, RentalClothDto rentalClothDto){
-        log.info("rentalNum = {}", rentalNum);
-        log.info("RentalClothDto = {}", rentalClothDto.toString());
+    public String rentalSlipEdit(@PathVariable("rentalNum") String rentalNum, @Validated RentalClothDto rentalClothDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "redirect:/rentalSlip/{rentalNum}/edit";
+        }
 
         MaleCloth maleCloth = rentalClothDto.getMaleCloth();
         FemaleCloth femaleCloth = rentalClothDto.getFemaleCloth();
@@ -138,6 +142,15 @@ public class RentalController {
         RentalSlip result = rentalService.saveRentalSlip(rentalSlip);
 
         return "redirect:/rentalSlip/{rentalNum}";
+    }
+
+    //검색기능
+    @GetMapping("/rentalSlip/search")
+    public String rentalSlipSearch(@RequestParam(value = "name") String customerName,Model model){
+
+        List<RentalSlipListDto> rentalSlips = rentalService.keywordSearch(customerName);
+        model.addAttribute("rentalSlips", rentalSlips);
+        return "rental/rentalSlipSearchedList";
     }
 
 

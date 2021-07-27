@@ -40,6 +40,10 @@ public class RentalSlip extends BaseEntity {
     @JoinColumn(name = "femalecloth_id")
     private FemaleCloth femalCloth;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "extra_id")
+    private Extra extra;
+
     private String payment; // 결제직원
     private String gamsung_pos; //감성포스 체크직원
     private String returner; // 반납확인

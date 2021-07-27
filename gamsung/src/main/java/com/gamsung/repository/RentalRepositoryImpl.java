@@ -60,6 +60,25 @@ public class RentalRepositoryImpl implements RentalRepositoryCustom{
     }
 
     @Override
+    public List<RentalSlipListDto> keywordRentalSlipList(String customerName) {
+        return queryFactory
+                .select(new QRentalSlipListDto(
+                        rentalSlip.rentalNum,
+                        ExpressionUtils.as(
+                                select(customer.count())
+                                        .from(customer)
+                                        .where(customer.rentalNum.eq(rentalSlip.rentalNum)),
+                                "customerCount"),
+                        rentalSlip.deposit,
+                        rentalSlip.receiver))
+                .from(rentalSlip)
+                .leftJoin(rentalSlip.customers, customer)
+                .where(rentalSlip.rentalStatus.eq(RentalStatus.RECEIVED),
+                        customer.customerName.eq(customerName))
+                .fetch();
+    }
+
+    @Override
     public List<AdminRentalSlipListDto> adminRentalSlipList() {
         return queryFactory
                 .select(new QAdminRentalSlipListDto(

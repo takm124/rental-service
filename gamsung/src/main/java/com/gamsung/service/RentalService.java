@@ -50,6 +50,10 @@ public class RentalService {
         return customerDtos;
     }
 
+    public List<RentalSlipListDto> keywordSearch(String customerName){
+        return rentalRepository.keywordRentalSlipList(customerName);
+    }
+
 
 
     @Transactional

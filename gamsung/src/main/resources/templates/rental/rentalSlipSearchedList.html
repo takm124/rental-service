@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">접수번호</th>
+            <th scope="col">인원</th>
+            <th scope="col">보증금</th>
+            <th scope="col">접수담당</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rentalSlip : ${rentalSlips}">
+            <td><a th:href="@{|/rentalSlip/${rentalSlip.rentalNum}|}" th:text="${rentalSlip.rentalNum}"></a></td>
+            <td th:text="${rentalSlip.customerCount}"></td>
+            <td th:text="${rentalSlip.deposit}"></td>
+            <td th:text = "${rentalSlip.receiver}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div> <!-- /container -->
+
+</body>
+</html>

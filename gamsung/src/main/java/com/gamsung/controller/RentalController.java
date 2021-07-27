@@ -144,6 +144,15 @@ public class RentalController {
         return "redirect:/rentalSlip/{rentalNum}";
     }
 
+    //검색기능
+    @GetMapping("/rentalSlip/search")
+    public String rentalSlipSearch(@RequestParam(value = "name") String customerName,Model model){
+
+        List<RentalSlipListDto> rentalSlips = rentalService.keywordSearch(customerName);
+        model.addAttribute("rentalSlips", rentalSlips);
+        return "rental/rentalSlipSearchedList";
+    }
+
 
 
 

@@ -26,19 +26,19 @@ public class LoginController {
 
     @GetMapping(value = {"/login", "/"})
     public String login(@ModelAttribute("loginForm") LoginForm loginForm){
-        return "login/loginForm";
+        return "login/login";
     }
 
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            return "login/loginForm";
+            return "login/login";
         }
 
         Staff loginStaff = loginService.login(form.getLoginId(), form.getPassword());
         if (loginStaff == null) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "login/loginForm";
+            return "login/login";
         }
 
         // 로그인 성공 처리

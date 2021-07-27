@@ -30,25 +30,6 @@ public class AdminController {
     private final AdminService adminService;
     private final RentalService rentalService;
 
-    public Map<String, String> places() {
-        Map<String, String> places = new HashMap<>();
-        places.put("LWJS", "잠실롯데월드점");
-        places.put("LWBS", "부산롯데월드점");
-        places.put("LWSC", "본점");
-        places.put("EVER", "에버랜드점");
-
-        return places;
-    }
-
-    @GetMapping
-    public String adminPage(Model model, HttpServletRequest request) {
-        Place staffPlace = getStaffPlace(request);
-
-        String staffPlaceName = places().get(staffPlace.toString());
-        model.addAttribute("place", staffPlaceName);
-
-        return "admin/admin_main";
-    }
 
     private Place getStaffPlace(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

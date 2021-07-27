@@ -44,8 +44,7 @@ public class AdminController {
     public String adminPage(Model model, HttpServletRequest request) {
         Place staffPlace = getStaffPlace(request);
 
-        Map<String, String> places = places();
-        String staffPlaceName = places.get(staffPlace.toString());
+        String staffPlaceName = places().get(staffPlace.toString());
         model.addAttribute("place", staffPlaceName);
 
         return "admin/admin_main";

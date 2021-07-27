@@ -1,122 +1,311 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+
     <meta charset="utf-8">
-    <link th:href="@{/css/bootstrap.min.css}"
-          href="../css/bootstrap.min.css" rel="stylesheet"/>
-    <style>
-        .container {
-            max-width: 560px;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet"/>
+
 </head>
-<body>
 
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr align="center">
-            <th colspan="3" th:text="${customers.get(0).getRentalNum()}"></th>
-        </tr>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">이름</th>
-            <th scope="col">전화번호</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="customer, stat : ${customers}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${customer.getCustomerName()}"></td>
-            <td th:text="${customer.getPhoneNum()}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div> <!-- /container -->
-<div class="container">
-    <div class="align-content-center col-sm-1">
-        <form th:action method="post">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th style="width: 32px;"></th>
-                    <th style="width: 7em;"> 남</th>
-                    <th style="width: 7em;"> 여</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>자켓</th>
-                    <td><input type="text" name="male_jacket" th:value="${rentalSlip.getMaleCloth()?.getMale_jacket()}"
-                               class="form-control"></td>
-                    <td><input type="text" name="female_jacket"
-                               th:value="${rentalSlip.getFemalCloth()?.getFemale_jacket()}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>셔츠</th>
-                    <td><input type="text" name="male_shirts" th:value="${rentalSlip.getMaleCloth()?.getMale_shirts()}"
-                               class="form-control"></td>
-                    <td><input type="text" name="female_shirts"
-                               th:value="${rentalSlip.getFemalCloth()?.getFemale_shirts()}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>하의</th>
-                    <td><input type="text" name="male_pants" th:value="${rentalSlip.getMaleCloth()?.getMale_pants()}"
-                               class="form-control"></td>
-                    <td><input type="text" name="female_pants"
-                               th:value="${rentalSlip.getFemalCloth()?.getFemale_pants()}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>조끼</th>
-                    <td><input type="text" name="male_vest" th:value="${rentalSlip.getMaleCloth()?.getMale_vest()}"
-                               class="form-control"></td>
-                    <td><input type="text" name="female_vest" th:value="${rentalSlip.getFemalCloth()?.getFemale_vest()}"
-                               class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>풀오버</th>
-                    <td><input type="text" name="male_pullover"
-                               th:value="${rentalSlip.getMaleCloth()?.getMale_pullover()}" class="form-control"></td>
-                    <td><input type="text" name="female_pullover"
-                               th:value="${rentalSlip.getFemalCloth()?.getFemale_pullover()}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>가디건</th>
-                    <td><input type="text" name="male_cardigan"
-                               th:value="${rentalSlip.getMaleCloth()?.getMale_cardigan()}" class="form-control"></td>
-                    <td><input type="text" name="female_cardigan"
-                               th:value="${rentalSlip.getFemalCloth()?.getFemale_cardigan()}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>타이</th>
-                    <td><input type="text" name="male_tie" th:value="${rentalSlip.getMaleCloth()?.getMale_tie()}"
-                               class="form-control"></td>
-                    <td><input type="text" name="female_tie" th:value="${rentalSlip.getFemalCloth()?.getFemale_tie()}"
-                               class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>벨트</th>
-                    <td colspan="2"><input type="text" name="belt" th:value="${rentalSlip.getMaleCloth()?.getBelt()}"
-                                           class="form-control">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <hr class="my-4">
-            <div class="row">
-                <div class="col">
-                    <button class="w-100 btn btn-primary btn-lg" type="sumbit">수정완료</button>
-                </div>
+<body id="page-top">
 
-                <div class="col">
-                    <button class="w-100 btn btn-secondary btn-lg"
-                            th:onclick="|location.href='@{/rentalSlip/{rentalNum}(rentalNum=${rentalSlip.rentalNum})}'|"
-                            type="button">취소
-                    </button>
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
+            <div class="sidebar-brand-icon">
+                <i class="fas fa-school"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">
+                감성교복<br><span th:text="${session.workPlaceName}"></span>
+            </div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-user"></i>
+                <span th:text="${session.loginStaff.staffName}">Staff</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        로그아웃
+                    </a>
                 </div>
             </div>
-        </form>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            감성교복
+        </div>
+
+        <!-- Nav Item - 접수 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/receive">
+                <i class="fas fa-fw fa-table"></i>
+                <span>접수</span></a>
+        </li>
+
+        <!-- Nav Item - 대여 및 결제 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/rentalSlip">
+                <i class="fas fa-fw fa-table"></i>
+                <span>대여 및 결제</span></a>
+        </li>
+
+        <!-- Nav Item - 반납 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/returnSlip">
+                <i class="fas fa-fw fa-table"></i>
+                <span>반납 관리</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item" th:if="${session.position.toString() eq 'ADMIN'}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-lock"></i>
+                <span>관리자페이지</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header" th:text="${session.workPlaceName}">관리자 전용</h6>
+                    <a class="collapse-item" href="/admin/staffAccounts">Staff계정관리</a>
+                    <a class="collapse-item" href="/admin/rentalSlipList">전표관리</a>
+                </div>
+            </div>
+        </li>
+
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Search(지움) -->
+
+
+                <!-- Topbar Navbar -->
+
+
+            </nav>
+            <!-- End of Topbar -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">대여 및 결제대기</h1>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">대여항목 수정</h6>
+                    </div>
+                    <!-- form start -->
+                    <form th:action method="post">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="customerTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr align="center">
+                                        <th colspan="3" th:text="${customers.get(0).getRentalNum()}"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>이름</th>
+                                        <th>전화번호</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="customer, stat : ${customers}">
+                                        <td th:text="${stat.count}"></td>
+                                        <td th:text="${customer.getCustomerName()}"></td>
+                                        <td th:text="${customer.getPhoneNum()}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="clothTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 32px;"></th>
+                                        <th style="width: 7em;"> 남</th>
+                                        <th style="width: 7em;"> 여</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>자켓</th>
+                                        <td><input type="text" name="male_jacket" th:value="${rentalSlip.getMaleCloth()?.getMale_jacket()}"
+                                                   class="form-control"></td>
+                                        <td><input type="text" name="female_jacket"
+                                                   th:value="${rentalSlip.getFemalCloth()?.getFemale_jacket()}" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>셔츠</th>
+                                        <td><input type="text" name="male_shirts" th:value="${rentalSlip.getMaleCloth()?.getMale_shirts()}"
+                                                   class="form-control"></td>
+                                        <td><input type="text" name="female_shirts"
+                                                   th:value="${rentalSlip.getFemalCloth()?.getFemale_shirts()}" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>하의</th>
+                                        <td><input type="text" name="male_pants" th:value="${rentalSlip.getMaleCloth()?.getMale_pants()}"
+                                                   class="form-control"></td>
+                                        <td><input type="text" name="female_pants"
+                                                   th:value="${rentalSlip.getFemalCloth()?.getFemale_pants()}" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>조끼</th>
+                                        <td><input type="text" name="male_vest" th:value="${rentalSlip.getMaleCloth()?.getMale_vest()}"
+                                                   class="form-control"></td>
+                                        <td><input type="text" name="female_vest" th:value="${rentalSlip.getFemalCloth()?.getFemale_vest()}"
+                                                   class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>풀오버</th>
+                                        <td><input type="text" name="male_pullover"
+                                                   th:value="${rentalSlip.getMaleCloth()?.getMale_pullover()}" class="form-control"></td>
+                                        <td><input type="text" name="female_pullover"
+                                                   th:value="${rentalSlip.getFemalCloth()?.getFemale_pullover()}" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>가디건</th>
+                                        <td><input type="text" name="male_cardigan"
+                                                   th:value="${rentalSlip.getMaleCloth()?.getMale_cardigan()}" class="form-control"></td>
+                                        <td><input type="text" name="female_cardigan"
+                                                   th:value="${rentalSlip.getFemalCloth()?.getFemale_cardigan()}" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>타이</th>
+                                        <td><input type="text" name="male_tie" th:value="${rentalSlip.getMaleCloth()?.getMale_tie()}"
+                                                   class="form-control"></td>
+                                        <td><input type="text" name="female_tie" th:value="${rentalSlip.getFemalCloth()?.getFemale_tie()}"
+                                                   class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>벨트</th>
+                                        <td colspan="2"><input type="text" name="belt" th:value="${rentalSlip.getMaleCloth()?.getBelt()}"
+                                                               class="form-control">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">접수하기</button>
+                            <button type="reset" class="btn btn-light">다시 작성하기</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- /.container-fluid -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Gamsung Gyobock 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
     </div>
-</div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">로그아웃 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <form class="collapse-item" th:action="@{/logout}" method="post">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit"> 로그아웃</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
 </body>
+
 </html>

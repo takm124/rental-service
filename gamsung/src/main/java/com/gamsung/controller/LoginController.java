@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -42,7 +44,9 @@ public class LoginController {
         // 로그인 성공 처리
         HttpSession session = request.getSession(); // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         session.setAttribute(SessionConst.LOGIN_STAFF, loginStaff);
-        log.info("position = {}", loginStaff.getJobPosition());
+
+        String workPlaceName = places().get(loginStaff.getPlace().toString());
+        session.setAttribute("workPlaceName", workPlaceName);
         session.setAttribute("position", loginStaff.getJobPosition());
         return "redirect:/main";
     }
@@ -54,5 +58,15 @@ public class LoginController {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    public Map<String, String> places() {
+        Map<String, String> places = new HashMap<>();
+        places.put("LWJS", "잠실롯데월드점");
+        places.put("LWBS", "부산롯데월드점");
+        places.put("LWSC", "본점");
+        places.put("EVER", "에버랜드점");
+
+        return places;
     }
 }

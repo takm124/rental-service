@@ -12,6 +12,6 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main(){
-        return "common/main";
+        return "common/mainPage";
     }
 }

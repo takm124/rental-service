@@ -40,3 +40,6 @@ src/main/resources/application.yml
 .vscode/
 
 .java-version
+
+### my ignore ###
+src/main/resources/application.ym

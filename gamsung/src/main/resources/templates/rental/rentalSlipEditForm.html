@@ -608,6 +608,491 @@
                                     </tr>
                                     </tbody>
                                 </table>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="extraTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                속바지 [4,500원]
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="row"><!-- 속바지 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                    data-dir="dwn"
+                                                                    onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="innerPants"
+                                                                   th:value="${rentalSlip.getExtra()?.getInnerPants()} eq null ? 0 : ${rentalSlip.getExtra().getInnerPants()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                    data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th>스타킹 - 커피 [3,000원]</th>
+                                            <th>스타킹 - 살색 [3,000원]</th>
+                                            <th>스타킹 - 검정 [3,000원]</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                               <div class="row"><!-- 스타킹 커피 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="stockings_coffee"
+                                                                   th:value="${rentalSlip.getExtra()?.getStockings_coffee()} eq null ? 0 : ${rentalSlip.getExtra().getStockings_coffee()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 스타킹 살색 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="stockings_skin"
+                                                                   th:value="${rentalSlip.getExtra()?.getStockings_skin()} eq null ? 0 : ${rentalSlip.getExtra().getStockings_skin()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 스타킹 검정 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="stockings_black"
+                                                                   th:value="${rentalSlip.getExtra()?.getStockings_black()} eq null ? 0 : ${rentalSlip.getExtra().getStockings_black()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th>발목양말 - 검정 [3,000원]</th>
+                                            <th>발목양말 - 흰색 [3,000원]</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="row"><!-- 발목양말 검정 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="socks_black"
+                                                                   th:value="${rentalSlip.getExtra()?.getSocks_black()} eq null ? 0 : ${rentalSlip.getExtra().getSocks_black()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 발목양말 흰색 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="socks_white"
+                                                                   th:value="${rentalSlip.getExtra()?.getSocks_white()} eq null ? 0 : ${rentalSlip.getExtra().getSocks_white()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th>끈나시 [10,000원]</th>
+                                            <th>티셔츠 - L [13,000원]</th>
+                                            <th>티셔츠 - XL [13,000원]</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="row"><!-- 끈나시 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="strap_top"
+                                                                   th:value="${rentalSlip.getExtra()?.getStrap_top()} eq null ? 0 : ${rentalSlip.getExtra().getStrap_top()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 티셔츠 L -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="tee_shirt_L"
+                                                                   th:value="${rentalSlip.getExtra()?.getTee_shirt_L()} eq null ? 0 : ${rentalSlip.getExtra().getTee_shirt_L()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 티셔츠 XL -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="tee_shirt_XL"
+                                                                   th:value="${rentalSlip.getExtra()?.getTee_shirt_XL()} eq null ? 0 : ${rentalSlip.getExtra().getTee_shirt_XL()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                180D 스타킹 [8,500원]
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="row"><!-- 180D 스타킹 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="stockings_180D"
+                                                                   th:value="${rentalSlip.getExtra()?.getStockings_180D()} eq null ? 0 : ${rentalSlip.getExtra().getStockings_180D()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th>니삭스 - 흰색 [4,500원]</th>
+                                            <th>니삭스 - 회색 [4,500원]</th>
+                                            <th>니삭스 - 검정 [4,500원]</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="row"><!-- 니삭스 흰색 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="knee_socks_white"
+                                                                   th:value="${rentalSlip.getExtra()?.getKnee_socks_white()} eq null ? 0 : ${rentalSlip.getExtra().getKnee_socks_white()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 니삭스 회색 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="knee_socks_gray"
+                                                                   th:value="${rentalSlip.getExtra()?.getKnee_socks_gray()} eq null ? 0 : ${rentalSlip.getExtra().getKnee_socks_gray()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 니삭스 검정 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="knee_socks_black"
+                                                                   th:value="${rentalSlip.getExtra()?.getKnee_socks_black()} eq null ? 0 : ${rentalSlip.getExtra().getKnee_socks_black()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th>오버니삭스 - 흰색 [5,500원]</th>
+                                            <th>오버니삭스 - 검정 [5,500원]</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="row"><!-- 오버니삭스 흰색 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="over_knee_socks_white"
+                                                                   th:value="${rentalSlip.getExtra()?.getOver_knee_socks_white()} eq null ? 0 : ${rentalSlip.getExtra().getOver_knee_socks_white()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row"><!-- 오버니삭스 검정 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="over_knee_socks_black"
+                                                                   th:value="${rentalSlip.getExtra()?.getOver_knee_socks_black()} eq null ? 0 : ${rentalSlip.getExtra().getOver_knee_socks_black()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                가방 [5,000원]
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="row"><!-- 가방 -->
+                                                    <div class="col-xs-3 col-lg-12">
+                                                        <div class="input-group number-spinner">
+                                                            <span class="input-group-btn data-dwn">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="dwn"
+                                                                        onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="backpack"
+                                                                   th:value="${rentalSlip.getExtra()?.getBackpack()} eq null ? 0 : ${rentalSlip.getExtra().getBackpack()}"
+                                                                   class="form-control test_value" style="text-align: center;">
+                                                            <span class="input-group-btn data-up">
+                                                                <button type="button" class="btn btn-default btn-info"
+                                                                        data-dir="up" onclick="event.preventDefault(); change_value(this)">
+                                                                    <span class="fas fa-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->

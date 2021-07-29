@@ -240,6 +240,168 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="extraTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="3">
+                                            속바지 [4,500원]
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <input type="text" name="innerPants" th:value="${rentalSlip.getExtra()?.getInnerPants()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>스타킹 - 커피 [3,000원]</th>
+                                        <th>스타킹 - 살색 [3,000원]</th>
+                                        <th>스타킹 - 검정 [3,000원]</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="stockings_coffee" th:value="${rentalSlip.getExtra()?.getStockings_coffee()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="stockings_skin" th:value="${rentalSlip.getExtra()?.getStockings_skin()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="stockings_black" th:value="${rentalSlip.getExtra()?.getStockings_black()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>발목양말 - 검정 [3,000원]</th>
+                                        <th>발목양말 - 흰색 [3,000원]</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="socks_black" th:value="${rentalSlip.getExtra()?.getSocks_black()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="socks_white" th:value="${rentalSlip.getExtra()?.getSocks_white()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>끈나시 [10,000원]</th>
+                                        <th>티셔츠 - L [13,000원]</th>
+                                        <th>티셔츠 - XL [13,000원]</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="strap_top" th:value="${rentalSlip.getExtra()?.getStrap_top()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="tee_shirt_L" th:value="${rentalSlip.getExtra()?.getTee_shirt_L()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="tee_shirt_XL" th:value="${rentalSlip.getExtra()?.getTee_shirt_XL()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th colspan="3">
+                                            180D 스타킹 [8,500원]
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <input type="text" name="stockings_180D" th:value="${rentalSlip.getExtra()?.getStockings_180D()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>니삭스 - 흰색 [4,500원]</th>
+                                        <th>니삭스 - 회색 [4,500원]</th>
+                                        <th>니삭스 - 검정 [4,500원]</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="knee_socks_white" th:value="${rentalSlip.getExtra()?.getKnee_socks_white()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="knee_socks_gray" th:value="${rentalSlip.getExtra()?.getKnee_socks_gray()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="knee_socks_black" th:value="${rentalSlip.getExtra()?.getKnee_socks_black()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>오버니삭스 - 흰색 [5,500원]</th>
+                                        <th>오버니삭스 - 검정 [5,500원]</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="over_knee_socks_white" th:value="${rentalSlip.getExtra()?.getOver_knee_socks_white()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="over_knee_socks_black" th:value="${rentalSlip.getExtra()?.getOver_knee_socks_black()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th colspan="3">
+                                            가방 [5,000원]
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <input type="text" name="backpack" th:value="${rentalSlip.getExtra()?.getBackpack()}"
+                                                   class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
                         </div>
                     </div><!-- cardBody close -->
                     <div class="card-footer">

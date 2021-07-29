@@ -37,3 +37,6 @@ out/
 .vscode/
 
 .java-version
+
+### my ignore ###
+src/main/resources/application.ym

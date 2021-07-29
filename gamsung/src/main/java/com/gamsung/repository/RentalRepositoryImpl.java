@@ -10,6 +10,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.gamsung.domain.QCustomer.*;
@@ -108,5 +109,21 @@ public class RentalRepositoryImpl implements RentalRepositoryCustom{
                 .from(rentalSlip)
                 .where(rentalSlip.rentalNum.eq(rentalNum))
                 .fetchOne();
+    }
+
+    @Override
+    public long countRentalSlip(RentalStatus rentalStatus) {
+        return queryFactory
+                .selectFrom(rentalSlip)
+                .where(rentalSlip.rentalStatus.eq(rentalStatus))
+                .fetchCount();
+    }
+
+    @Override
+    public long countTodayRentalSlip(String today) {
+        return queryFactory
+                .selectFrom(rentalSlip)
+                .where(rentalSlip.rentalNum.contains(today))
+                .fetchCount();
     }
 }

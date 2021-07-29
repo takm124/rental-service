@@ -25,7 +25,7 @@ public class RentalSlip extends BaseEntity {
 
     private String receiver; // 접수직원
 
-    @OneToMany(mappedBy = "rentalSlip")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rentalSlip")
     private List<Customer> customers = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

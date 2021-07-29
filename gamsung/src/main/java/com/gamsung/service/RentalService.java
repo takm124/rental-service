@@ -54,7 +54,10 @@ public class RentalService {
         return rentalRepository.keywordRentalSlipList(customerName);
     }
 
-
+    @Transactional
+    public void rentalSlipDelete(String rentalNum){
+        rentalRepository.deleteByRentalNum(rentalNum);
+    }
 
     @Transactional
     public void updatePayment(Long id, RentalStatus rentalStatus, String staffName){

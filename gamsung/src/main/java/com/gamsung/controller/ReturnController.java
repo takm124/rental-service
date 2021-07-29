@@ -61,4 +61,11 @@ public class ReturnController {
 
         return "redirect:/returnSlip";
     }
+
+    //전표 삭제
+    @GetMapping("/returnSlip/{rentalNum}/delete")
+    public String rentalSlipDelete(@PathVariable("rentalNum") String rentalNum){
+        rentalService.rentalSlipDelete(rentalNum);
+        return "redirect:/returnSlip";
+    }
 }

@@ -155,6 +155,12 @@ public class RentalController {
         return "rental/rentalSlipSearchedList";
     }
 
+    //전표 삭제
+    @GetMapping("/rentalSlip/{rentalNum}/delete")
+    public String rentalSlipDelete(@PathVariable("rentalNum") String rentalNum){
+        rentalService.rentalSlipDelete(rentalNum);
+        return "redirect:/rentalSlip";
+    }
 
 
 

@@ -169,7 +169,40 @@
                 </div>
             </div>
 
-            <!-- /.container-fluid -->
+            <div class="container-fluid">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">접수 정보</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>고객명</th>
+                                    <th>휴대폰번호</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="customer : ${customers}">
+                                    <td th:text="${customer.customerName}"></td>
+                                    <td th:text = "${customer.phoneNum}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger mx-2"
+                                th:onclick="|location.href='@{/rentalSlipReceive/{rentalNum}/delete(rentalNum=${rentalNum})}'|"
+                                type="button">전표 삭제
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- /.container-fluid -->
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">

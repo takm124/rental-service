@@ -71,7 +71,9 @@ public class RentalController {
 
     @GetMapping("/receiveCheck/{rentalNum}")
     public String receiveCheck(@PathVariable String rentalNum, Model model){
+        List<CustomerDto> customers = rentalService.getCustomer(rentalNum);
         model.addAttribute("rentalNum", rentalNum);
+        model.addAttribute("customers", customers);
         return "rental/receiveCheck";
     }
 
@@ -155,13 +157,19 @@ public class RentalController {
         return "rental/rentalSlipSearchedList";
     }
 
-    //전표 삭제
+    //전표 삭제 - 대여 및 결제
     @GetMapping("/rentalSlip/{rentalNum}/delete")
     public String rentalSlipDelete(@PathVariable("rentalNum") String rentalNum){
         rentalService.rentalSlipDelete(rentalNum);
         return "redirect:/rentalSlip";
     }
 
+    //전표 삭제
+    @GetMapping("/rentalSlipReceive/{rentalNum}/delete")
+    public String rentalSlipDeleteForReceived(@PathVariable("rentalNum") String rentalNum){
+        rentalService.rentalSlipDelete(rentalNum);
+        return "redirect:/receive";
+    }
 
 
 }

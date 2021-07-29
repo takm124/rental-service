@@ -417,6 +417,10 @@
                                 onclick="location.href='items.html'"
                                 th:onclick="|location.href='@{/rentalSlip/{rentalNum}(rentalNum=${rentalSlip.rentalNum})}'|" type="button">취소
                         </button>
+                        <button class="btn btn-danger mx-2"
+                                    th:onclick="|location.href='@{/rentalSlip/{rentalNum}/delete(rentalNum=${rentalSlip.rentalNum})}'|"
+                                    type="button">전표 삭제
+                        </button>
                         </div>
                     </div>
                 </div>

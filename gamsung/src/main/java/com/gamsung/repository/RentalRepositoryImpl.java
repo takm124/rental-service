@@ -1,9 +1,6 @@
 package com.gamsung.repository;
 
-import com.gamsung.domain.Customer;
-import com.gamsung.domain.QCustomer;
-import com.gamsung.domain.QRentalSlip;
-import com.gamsung.domain.RentalStatus;
+import com.gamsung.domain.*;
 import com.gamsung.domain.dto.*;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.jpa.JPAExpressions;
@@ -12,6 +9,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.gamsung.domain.QCustomer.*;
 import static com.gamsung.domain.QRentalSlip.*;
@@ -125,5 +123,34 @@ public class RentalRepositoryImpl implements RentalRepositoryCustom{
                 .selectFrom(rentalSlip)
                 .where(rentalSlip.rentalNum.contains(today))
                 .fetchCount();
+    }
+
+    @Override
+    public List<AdminRentalSlipListDto> adminRentalSlipByCustomerName(String customerName) {
+        List<RentalSlip> rentalSlips = queryFactory.selectFrom(rentalSlip)
+                .leftJoin(rentalSlip.customers, customer)
+                .where(customer.customerName.eq(customerName))
+                .fetchJoin().fetch();
+
+        return rentalSlips.stream()
+                .map(p -> new AdminRentalSlipListDto(p.getRentalNum(), p.getReceiver(), p.getPayment(), p.getGamsung_pos(), p.getReturner(), p.getCreatedDate()))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<AdminRentalSlipListDto> adminRentalSlipByEnterDate(String enterDate) {
+        return queryFactory
+                .select(new QAdminRentalSlipListDto(
+                        rentalSlip.rentalNum,
+                        rentalSlip.receiver,
+                        rentalSlip.payment,
+                        rentalSlip.gamsung_pos,
+                        rentalSlip.returner,
+                        rentalSlip.createdDate
+                ))
+                .from(rentalSlip)
+                .where(rentalSlip.rentalNum.contains(enterDate))
+                .fetch();
     }
 }

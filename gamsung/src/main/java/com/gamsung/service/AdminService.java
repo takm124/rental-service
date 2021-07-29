@@ -41,4 +41,16 @@ public class AdminService {
     public AdminRentalSlipListDto rentalSlipDetail(String rentalNum){
         return rentalRepository.adminRentalSlipDetail(rentalNum);
     }
+
+    public List<AdminRentalSlipListDto> adminRentalSlipByCustomerName(String customerName) {
+        return rentalRepository.adminRentalSlipByCustomerName(customerName);
+    }
+
+    public List<AdminRentalSlipListDto> adminRentalSlipByEnterDate(String enterDate) {
+        return rentalRepository.adminRentalSlipByEnterDate(enterDate);
+    }
+
+    public Staff findStaffByStaffName(String staffName){
+        return staffRepository.findByStaffName(staffName);
+    }
 }

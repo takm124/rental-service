@@ -245,9 +245,15 @@
                             </div>
                     </div><!-- cardBody close -->
                     <div class="card-footer">
+                        <div class="row">
                         <form th:action method="post">
                             <button type="submit" class="btn btn-primary">반납완료</button>
                         </form>
+                        <button class="btn btn-danger mx-2"
+                                th:onclick="|location.href='@{/returnSlip/{rentalNum}/delete(rentalNum=${returnSlip.rentalNum})}'|"
+                                type="button">전표 삭제
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->

@@ -20,6 +20,8 @@ public interface RentalRepositoryCustom {
 
     List<AdminRentalSlipListDto> adminRentalSlipList();
     AdminRentalSlipListDto adminRentalSlipDetail(String rentalNum);
+    List<AdminRentalSlipListDto> adminRentalSlipByCustomerName(String customerName);
+    List<AdminRentalSlipListDto> adminRentalSlipByEnterDate(String enterDate);
 
     long countRentalSlip(RentalStatus rentalStatus);
 

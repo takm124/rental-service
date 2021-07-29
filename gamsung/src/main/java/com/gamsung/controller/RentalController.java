@@ -133,9 +133,10 @@ public class RentalController {
 
         MaleCloth maleCloth = rentalClothDto.getMaleCloth();
         FemaleCloth femaleCloth = rentalClothDto.getFemaleCloth();
+        Extra extra = rentalClothDto.getExtra();
 
         RentalSlip rentalSlip = rentalService.findRentalSlip(rentalNum);
-        ClothDto cloth = new ClothDto(maleCloth, femaleCloth);
+        ClothDto cloth = new ClothDto(maleCloth, femaleCloth, extra);
 
         rentalSlip.setCloth(cloth);
 

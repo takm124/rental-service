@@ -61,7 +61,7 @@ public class RentalSlip extends BaseEntity {
     public void setCloth(ClothDto clothDto){
         this.maleCloth = clothDto.getMaleCloth();
         this.femalCloth = clothDto.getFemaleCloth();
-
+        this.extra = clothDto.getExtra();
     }
 
     public void changeStatus(RentalStatus status) {

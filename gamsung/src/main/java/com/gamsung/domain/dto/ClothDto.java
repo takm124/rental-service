@@ -1,5 +1,6 @@
 package com.gamsung.domain.dto;
 
+import com.gamsung.domain.Extra;
 import com.gamsung.domain.FemaleCloth;
 import com.gamsung.domain.MaleCloth;
 import com.gamsung.domain.RentalStatus;
@@ -10,11 +11,11 @@ public class ClothDto {
 
     private MaleCloth maleCloth;
     private FemaleCloth femaleCloth;
-    private RentalStatus rentalStatus;
+    private Extra extra;
 
-
-    public ClothDto(MaleCloth maleCloth, FemaleCloth femaleCloth) {
+    public ClothDto(MaleCloth maleCloth, FemaleCloth femaleCloth, Extra extra) {
         this.maleCloth = maleCloth;
         this.femaleCloth = femaleCloth;
+        this.extra = extra;
     }
 }

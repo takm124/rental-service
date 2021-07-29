@@ -11,6 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,10 +58,26 @@ public class RentalService {
         return rentalRepository.keywordRentalSlipList(customerName);
     }
 
+
     @Transactional
     public void rentalSlipDelete(String rentalNum){
         rentalRepository.deleteByRentalNum(rentalNum);
     }
+
+    public long countRentalSlip(RentalStatus rentalStatus) {
+        return rentalRepository.countRentalSlip(rentalStatus);
+    }
+
+    public long countTodayRentalSlip(){
+        String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        return rentalRepository.countTodayRentalSlip(today);
+    }
+
+    public long countTodayCustomer(){
+        String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        return customerRepository.countTodayCustomer(today);
+    }
+
 
     @Transactional
     public void updatePayment(Long id, RentalStatus rentalStatus, String staffName){

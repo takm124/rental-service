@@ -150,6 +150,7 @@ public class RentalController {
 
         List<RentalSlipListDto> rentalSlips = rentalService.keywordSearch(customerName);
         model.addAttribute("rentalSlips", rentalSlips);
+        model.addAttribute("searchName", customerName);
         return "rental/rentalSlipSearchedList";
     }
 

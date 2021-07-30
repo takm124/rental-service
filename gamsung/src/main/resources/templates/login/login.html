@@ -18,11 +18,7 @@
     <!-- Custom styles for this template-->
     <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet"/>
     <style>
-        #login_img{
-            background-image: url(https://cdn.imweb.me/thumbnail/20200409/7c6f37375282c.jpg);
-            background-size: cover;
-            background-position: center;
-        }
+
     </style>
 </head>
 
@@ -40,12 +36,11 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block" id="login_img">
-<!--                                <img th:src="@{/img/gamsung_login.png}" height="480px"/>-->
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">감성교복</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">의상 대여 시스템</h1>
                                     </div>
 
                                     <form class="user" action="/login" th:object="${loginForm}" method="post">

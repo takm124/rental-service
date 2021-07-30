@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>감성교복 - 전표 조회</title>
+    <title>의상 대여 시스템 - 전표 조회</title>
 
     <!-- Custom fonts for this template-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -34,7 +34,7 @@
                 <i class="fas fa-school"></i>
             </div>
             <div class="sidebar-brand-text mx-3">
-                감성교복<br><span th:text="${session.workPlaceName}"></span>
+                의상 대여 시스템
             </div>
         </a>
 
@@ -63,7 +63,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            감성교복
+            의상 대여
         </div>
 
         <!-- Nav Item - 접수 -->
@@ -99,7 +99,7 @@
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header" th:text="${session.workPlaceName}">관리자 전용</h6>
+                    <h6 class="collapse-header">관리자 전용</h6>
                     <a class="collapse-item" href="/admin/staffAccounts">Staff계정관리</a>
                     <a class="collapse-item" href="/admin/rentalSlipList">전표관리</a>
                 </div>
@@ -431,7 +431,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Gamsung Gyobock 2021</span>
+                        <span>Copyright &copy; Rental System 2021</span>
                     </div>
                 </div>
             </footer>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>감성교복</title>
+    <title>의상대여 - 메인</title>
 
     <!-- Custom fonts for this template-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -17,22 +17,6 @@
 
     <!-- Custom styles for this template-->
     <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet"/>
-
-    <style>
-        #content_1{
-            background-image: url(https://cdn.imweb.me/thumbnail/20200305/2b55913152342.jpg);
-            background-size: cover;
-            background-position: center;
-            height: 700px;
-        }
-
-        #content_2{
-            background-image: url(https://cdn.imweb.me/thumbnail/20200409/494609f342090.jpg);
-            background-size: cover;
-            background-position: center;
-            height: 900px;
-        }
-    </style>
 
 </head>
 
@@ -50,7 +34,7 @@
                 <i class="fas fa-school"></i>
             </div>
             <div class="sidebar-brand-text mx-3">
-                감성교복<br><span th:text="${session.workPlaceName}"></span>
+                의상 대여시스템
             </div>
         </a>
 
@@ -79,7 +63,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            감성교복
+            의상대여
         </div>
 
         <!-- Nav Item - 접수 -->
@@ -115,7 +99,7 @@
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header" th:text="${session.workPlaceName}">관리자 전용</h6>
+                    <h6 class="collapse-header">관리자 전용</h6>
                     <a class="collapse-item" href="/admin/staffAccounts">Staff계정관리</a>
                     <a class="collapse-item" href="/admin/rentalSlipList">전표관리</a>
                 </div>
@@ -160,7 +144,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800" th:text="감성교복 + ' ' + ${session.workPlaceName}"></h1>
+                    <h1 class="h3 mb-0 text-gray-800">의상 대여시스템</h1>
                 </div>
 
                 <!-- Content Row -->
@@ -240,10 +224,6 @@
 
                 </div>
 
-                <div class="row">
-                    <div class="col-xl-8 col-lg-7" id="content_1"></div>
-                    <div class="col-xl-4 col-lg-5" id="content_2"></div>
-                </div>
 
 
             </div>
@@ -256,7 +236,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Gamsung Gyobock 2021</span>
+                    <span>Copyright &copy; Rental System 2021</span>
                 </div>
             </div>
         </footer>

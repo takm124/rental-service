@@ -44,6 +44,7 @@ test {
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
 querydsl {
+	library = "com.querydsl:querydsl-apt:4.2.2"
 	jpa = true
 	querydslSourcesDir = querydslDir
 }

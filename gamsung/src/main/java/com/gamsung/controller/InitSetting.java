@@ -33,7 +33,7 @@ public class InitSetting {
             Staff adminEVER = new Staff(UUID.randomUUID().toString(),"adminEVER","admin2","2222", "01012341234",Place.EVER, JobPosition.ADMIN);
             em.persist(test);
             em.persist(adminLWJS);
-            em.persist(adminLWJS);
+            em.persist(adminEVER);
 
         }
 

@@ -1,17 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:mariadb://rental-service-rds.cjdyyqzqbo2j.ap-northeast-2.rds.amazonaws.com:3306/gamsung
-    username: jxxtty
-    password: wogmlwogml94
-    driver-class-name: org.mariadb.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
   data:
     web:
       pageable:
@@ -24,3 +11,44 @@ logging.level:
 
 server:
   port: 8076
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/gamsung
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:mariadb://rental-service-rds.cjdyyqzqbo2j.ap-northeast-2.rds.amazonaws.com:3306/gamsung
+    username:
+    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
